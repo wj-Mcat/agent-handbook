@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Things about Agent',
-  tagline: 'Agent is Transformer in 21-century',
+  title: '我的 Agent 学习笔记',
+  tagline: '都 21 世纪了，该学一学Agent相关的知识了',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -60,21 +60,18 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
+      title: 'Agent 学习笔记',
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: '学习笔记',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/blog', label: '博客', position: 'left'},
+        {to: '/about-me', label: 'About Me', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/wj-Mcat/agent-handbook',
           label: 'GitHub',
           position: 'right',
         },

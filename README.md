@@ -1,41 +1,12 @@
-# Website
+# Awesome Agent
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-### Installation
+## Paper Reading
 
-```
-$ yarn
-```
 
-### Local Development
+* **ORPO: Monolithic Preference Optimization without Reference Model**
 
-```
-$ yarn start
-```
+将DPO 和 SFT 阶段融合到一起，实现在SFT 就已经完成了对齐相关的工作，优点是有效提升训练资源以及降低时间成本。
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+此方法还有待社区验证是否能完全有效。
 
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

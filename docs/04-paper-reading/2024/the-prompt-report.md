@@ -468,4 +468,21 @@ Multi-Agent 就是这种范式。
 
 ### Self-Refine
 
-此方法构建了一个不断纠正的loop，进而。。。
+此方法构建了一个不断纠正的loop，通过在answer、prompt和question 上面不断迭代，进而提升框架的效果。整体的架构如下所示：
+
+![self-refine-struture](./imgs/self-refine.png)
+
+个人感觉，这个迭代过程可以优化的点非常多，可以从 Prompt、Examples、Answer、Multi-Agent 多个角度来优化，所以这个也算是一个比较通用的效果优化迭代框架。
+
+### Chain-of-Verification
+
+此方法的核心方法是：
+
+1. 先基于用户的问题生成初版本 response。
+2. 再针对于response 提出各种问题，进而解决 response 中的多种不确定性。
+3. 最后聚合多种答案生成最终答案。
+
+执行原理架构图如下所示：
+
+![alt text](./imgs/chain-of-verification.png)
+

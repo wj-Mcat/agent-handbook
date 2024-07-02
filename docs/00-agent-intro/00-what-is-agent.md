@@ -10,5 +10,5 @@ slug: what-is-agent
 简要的架构图如下所示：
 
 ![llm-agent-components](./imgs/simple-llm-agent-structure.png)
-> 参考：https://www.superannotate.com/blog/llm-agents
+> 图片来源：https://www.superannotate.com/blog/llm-agents
 

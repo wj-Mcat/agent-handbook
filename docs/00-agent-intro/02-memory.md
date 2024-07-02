@@ -1,8 +1,8 @@
 ---
 sidebar_position: 1
-slug: what-is-agent
+slug: memory-of-agent
 ---
 
-# 工具使用
+# 记忆管理
 
 TODO(wj-Mcat): 待补充

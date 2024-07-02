@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-slug: what-is-agent
+slug: tool-usage
 ---
 
 # 工具使用

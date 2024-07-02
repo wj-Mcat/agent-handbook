@@ -1,4 +1,3 @@
-
 ---
 slug: add-comment-component
 title: Add Comment Component to my HandBook

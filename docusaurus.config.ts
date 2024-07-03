@@ -60,15 +60,15 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Agent 学习笔记',
+      title: 'Agent HandBook',
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: '学习笔记',
+          label: 'Knowledge',
         },
-        {to: '/blog', label: '博客', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/about-me', label: 'About Me', position: 'left'},
         {
           href: 'https://github.com/wj-Mcat/agent-handbook',

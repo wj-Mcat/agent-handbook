@@ -77,4 +77,15 @@ Agent 中的记忆也是一样的，如果要完成一个复杂的任务，通�
 
 当然，还有 Tree of Thought 可以对每个子问题进行递归拆分，直到问题被完全解决。
 
-TODO(wj-Mcat): doing
+相关的方法介绍如下所示：
+
+![agent planning](./imgs/agent-planning-methods.png)
+
+> 图片来源于：[A Survey on Large Language Model based Autonomous
+Agents](https://arxiv.org/pdf/2308.11432)
+
+### 任务反思
+
+一旦任务被拆分出来，此时需要判断：拆分之后的任务是否合理，能否解决问题。所以任务拆分是否正确此时至关重要，能进一步提升任务执行的准确度，这个阶段就称之为任务反思。
+
+任务反思可以用LLM来进行反思，此时你可以写一套Prompt。

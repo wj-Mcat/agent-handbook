@@ -171,7 +171,6 @@ A: {answer}
 
 总之，你给的 Examples 与真实场景更贴近，覆盖的范围更广，生成的效果就会更好。
 
-
 ### 动态选择 Few-Shot Examples
 
 如果你针对于目标场景下有很多的Examples（假设有100个case），此时是否一股脑儿将其全部塞入到 Prompt 当中吗？

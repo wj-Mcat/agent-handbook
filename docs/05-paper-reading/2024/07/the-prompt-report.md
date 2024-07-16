@@ -485,3 +485,6 @@ Multi-Agent 就是这种范式。
 
 ![alt text](./imgs/chain-of-verification.png)
 
+## 总结
+
+此篇论文中介绍的方法实在是有点多，我会在自己学习工作的当中将觉得重要且有价值的方法持续不断的更新到 [wj-Mcat/agent-handbook/](https://github.com/wj-Mcat/agent-handbook/) 当中，也非常欢迎大家一起学习交流。

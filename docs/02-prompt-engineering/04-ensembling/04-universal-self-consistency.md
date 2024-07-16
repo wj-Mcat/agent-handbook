@@ -6,8 +6,7 @@ title: Universal Self Consistency
 
 此方法与上面的 Self-Consistency 方法类似，区别只是在于：此方法使用 prompt template 来选择最终的答案。
 
-![](../../04-paper-reading/2024/imgs/nani.webp)
-
+![](../../05-paper-reading/2024/07/imgs/nani.webp)
 
 啊这......
 

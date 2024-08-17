@@ -17,9 +17,11 @@
 
 ### Agent Introduction
 
-[![What's next for AI agentic workflows ft. Andrew Ng of AI Fund](https://img.youtube.com/vi/sal78ACtGTc/0.jpg)](https://www.youtube.com/watch?v=sal78ACtGTc)
-
 ### Agent Workflow
+
+强烈推荐大家先看吴恩达老师的这篇演讲来入门了解 Agent Workflow：
+
+[![What's next for AI agentic workflows ft. Andrew Ng of AI Fund](https://img.youtube.com/vi/sal78ACtGTc/maxresdefault.jpg)](https://www.youtube.com/watch?v=sal78ACtGTc)
 
 ## Paper Reading
 

@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: '我的 Agent 学习笔记',
-  tagline: '都 21 世纪了，该学一学Agent相关的知识了',
+  title: '《Agent Handbook》',
+  tagline: 'Agent Is All You Need',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

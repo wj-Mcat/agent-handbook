@@ -7,10 +7,10 @@ export default function GiscusComponent() {
 
   return (
     <Giscus    
-      repo="nameOfYourGitHubAccount/nameOfCreatedRepository"
-      repoId="idOfCreatedRepo"
-      category="General"
-      categoryId="IdOfDiscussionCategory"  // E.g. id of "General"
+      repo="wj-Mcat/agent-handbook"
+      repoId="R_kgDOMKUZww"
+      category="Q&A"
+      categoryId="DIC_kwDOMKUZw84ChvU2"  // E.g. id of "General"
       mapping="url"                        // Important! To map comments to URL
       term="Welcome to @giscus/react component!"
       strict="0"

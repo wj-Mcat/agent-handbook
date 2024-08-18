@@ -9,16 +9,16 @@ export default function GiscusComponent() {
     <Giscus    
       repo="wj-Mcat/agent-handbook"
       repoId="R_kgDOMKUZww"
-      category="Q&A"
-      categoryId="DIC_kwDOMKUZw84ChvU2"  // E.g. id of "General"
-      mapping="url"                        // Important! To map comments to URL
+      category="General"
+      categoryId="DIC_kwDOMKUZw84ChvU1"  // E.g. id of "General"
+      mapping="pathname"                        // Important! To map comments to URL
       term="Welcome to @giscus/react component!"
       strict="0"
       reactionsEnabled="1"
       emitMetadata="1"
       inputPosition="top"
       theme={colorMode}
-      lang="en"
+      lang="zh"
       loading="lazy"
       crossorigin="anonymous"
       async

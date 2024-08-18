@@ -1,6 +1,6 @@
 ---
 slug: what-is-prompt-engineering
-title: Introduction
+title: 介绍
 ---
 
 # Introduction to Prompt Engineering

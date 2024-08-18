@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 slug: what-is-agent
+enableComments: true
 ---
 
 # 什么是Agent

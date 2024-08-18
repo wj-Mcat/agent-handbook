@@ -11,7 +11,7 @@ export default function GiscusComponent() {
       repoId="R_kgDOMKUZww"
       category="General"
       categoryId="DIC_kwDOMKUZw84ChvU1"  // E.g. id of "General"
-      mapping="url"                        // Important! To map comments to URL
+      mapping="pathname"                        // Important! To map comments to URL
       term="Welcome to @giscus/react component!"
       strict="0"
       reactionsEnabled="1"

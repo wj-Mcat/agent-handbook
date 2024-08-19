@@ -1,0 +1,25 @@
+---
+title: "Instruction Tuning"
+comments: true
+tags: [LLM, SFT]
+---
+
+构建好Agent之后，怎么调Prompt都没办法将效果调上去，此时就需要对LLM进行SFT，进而提升在目标领域上的效果。
+
+
+## 数据集构建
+
+### 数据质量
+
+1. 首先确保每条数据能够完全follow instruction。
+2. 意图清晰，指令精简。
+
+### 数据多样性
+
+1. 同类型的数据不超过 200 条。
+2. 在某类型下的数据数量取决于LLM在该类型下的效果：如果效果比较差，此时数据量就稍微多一些；如果效果已经比较好，数量可以稍微少点。
+3. 可以用LLM给数据做多样性检测。
+
+模型的能力源于预训练，
+
+参考文章：https://www.databricks.com/blog/limit-less-more-instruction-tuning

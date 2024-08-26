@@ -2,7 +2,7 @@
 slug: add-comment-component
 title: 添加评论模块
 authors: wj-Mcat
-tags: [comment]
+tags: [tools]
 ---
 
 给我心爱的博客添加了评论系统，So, 如果你有任何想说的，欢迎来comment。

@@ -48,14 +48,20 @@ title: "训练全景概览"
 
 SFT 阶段旨在牵引预训练阶段涌现出的多种能力，会重点训练成：chat 类型模型和 instruction 类型模型。
 
-chat 类型模型会在大量对话相关数据集上训练，进而让模型能够实现更加
+chat 类型模型会在大量对话相关数据集上训练，进而让模型能够更友好的对话能力，此类数据的构建通常来源于真实数据。
 
-### Alignment
+instruction 类型模型会在大量指令数据集上面训练，让模型具备更好的指令遵循的能力，此类数据的构建可通过LLM来生成高质量数据。[<sup>5</sup>](#self-play-with-execution-feedback)
+
+### 对齐
+
+对齐本质上也是有监督微调，只不过从作用上来说是为了更精细化的控制模型的生成效果，让其更符合人类的偏好。
 
 在对齐阶段，相关方法比较多，其中包括：
 
-## 总结
-
+* PPO: Proximal Policy Optimization Algorithms [<sup>6</sup>](#ppo)
+* DPO: Direct Preference Optimization: Your Language Model is Secretly a Reward Model [<sup>7</sup>](#dpo)
+* KTO: Model Alignment as Prospect Theoretic Optimization [<sup>8</sup>](#kto)
+* ...
 
 ## 参考资料
 
@@ -63,3 +69,7 @@ chat 类型模型会在大量对话相关数据集上训练，进而让模型能
 * [2] [GLM Long：如何将 LLM 的上下文扩展至百万级](https://mp.weixin.qq.com/s/Rs2o8K3Hb-I103eDgNBhVQ) <div id="glm-long" />
 * [3] [Does Fine-Tuning LLMs on New Knowledge Encourage Hallucinations?](https://arxiv.org/abs/2405.05904) <div id="hallucinations-of-finetune" />
 * [4] [Towards Trustable Language Models: Investigating Information Quality of Large Language Models](https://arxiv.org/pdf/2401.13086) <div id="investigating-information-quality" />
+* [5] [Self-play with Execution Feedback: Improving Instruction-following Capabilities of Large Language Models](http://arxiv.org/abs/2406.13542) <div id="self-play-with-execution-feedback" />
+* [6] [Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347) <div id="ppo" />
+* [7] [Direct Preference Optimization: Your Language Model is Secretly a Reward Model](https://arxiv.org/abs/2305.18290) <div id="dpo" />
+* [8] [KTO: Model Alignment as Prospect Theoretic Optimization](https://arxiv.org/abs/2402.01306) <div id="kto" />

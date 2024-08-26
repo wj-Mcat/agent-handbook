@@ -1,16 +1,12 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+llm:
+  label: LLM
+  permalink: /llm
+  description: large language model
+Agent:
+  label: Agent
+  permalink: /agent
+  description: the agent operation unit
+tools:
+  label: Tool
+  permalink: /tools
+  description: the tool usage

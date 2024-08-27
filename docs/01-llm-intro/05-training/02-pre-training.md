@@ -52,7 +52,7 @@ title: "预训练"
 
 基于 scaling law 规律，在不同size 模型上的效果表现存在一定的关联性，此时就可以用小模型的训练来监控大模型的训练过程。
 
-#### 夹缝中的优化方法
+#### 数据混合
 
 当所有的数据都准备好了，也满足scaling laws 的公式，此时如何进一步优化模型训练的效果，此时就只有基于有限数据做一些 ***调整***，进而让其在发挥出最大的数据效果，此时通常使用 **数据混合** 方法。
 
@@ -64,7 +64,77 @@ title: "预训练"
 
 :::
 
+### Domain能力预测
+
+检验 LLM 训练是否收敛通常使用loss、ppl 等来衡量，可是loss 的下降和对应领域能力的提升吗？比如说数学和代码的能力。
+
+GPT-4 技术报告 [<sup>3</sup>](#gpt4-report) 中提到不同领域的能力是可以通过 Scaling Laws 预测出来的，比如说 coding。不过这仅仅是实现的一个现象，并不代表这就是真理。
+
+在训练过程中，甚至还会出现效果衰减的情况，如何 early stop 策略也是一个黑盒。
+
+当然还有一些能力是无法用scaling law 来预测的，比如： in-context-learning 能力，这个一定程度上是因为模型的 size 到了一定的程度之后就会涌现。
+
+## LLM 能力的涌现
+
+大模型能力的涌现只在大模型中发生 [<sup>4</sup>](#emergent-abilities-of-llm) ，当模型的规模到达一定的阈值之后，模型会涌现出一些能力，这些能力是 LLM 无法预测的，此外还和一些复杂任务相关联，比如说数学、代码等需要逻辑推理相关的能力。
+
+而我们评估大模型的能力通常会评估它的通用能力。
+
+### 上下文学习
+
+上下文学习（In-Context Learning）能力是 LLM 的一项重要能力，它允许模型在给定的上下文中进行推理和预测，根据用户给的上下文内容给出一个符合预期的回复，这些内容通常是大模型没有学习过的。
+
+在GPT系列模型中，175B GPT-3 模型通常展现出较强的ICL能力，但GPT-1和GPT-2模型则不然。同时此能力还与特定的下游任务有关，例如 13B GPT-3模型在算术任务（如三位数的加减法）上能够展现出ICL能力，但175B GPT-3模型甚至在 Persian QA 任务上表现不佳。
+
+### 指令跟随
+
+指令跟随（Instruction Following）是指模型能够理解和执行给定指令的能力。
+
+真实场景中的指令多种多样，大模型是不可能将所有的指令都学习到，在现代社会中，无论是工作场所、家庭生活还是日常社交，指令跟随能力都是一项至关重要的技能，也一定程度上体现出模型的智能性和定制性。
+
+指令数据可以来源于 QA任务、分类任务、信息抽取任务、结构化生成等任务，当指令类型和数据集变多，模型到达一定的size（与scaling law 有关，可是不是一个绝对的数值）后即可表现出优秀的zero-shot 的能力。
+
+### 任务推理
+
+复杂的任务通常是需要有较强的推理能力，比如要解决一个数学问题、写一段逻辑复杂的代码、通过组装不同的工具来解决一个复杂的问题等。这个推理的过程通常会使用思维链（Chain-of-Thought）的方式进行推理，进而提升大模型对复杂任务的解决能力。
+
+这种推理能力也是大模型涌现出来的能力之一，人们推断这是来源于代码数据训练而来 [<sup>5</sup>](#chain-of-thought-prompting) ，同时此项能力当模型规模越大，相对比不用CoT的Prompt策略而言，性能也会得到显著提升。
+
+当然这个只是一个常规看法，不同模型在不同任务上的表现也不太一样，不一定能 100% 应用于所有场景。
+
+## 提升LLM的效果
+
+随着大模型的应用面越来越广，对其能力的要求也是越来越高，分别有：代码生成能力、指令跟随、格式化输出、推理能力、工具调用以及长上下文能力。
+
+GPT-3为了提升以上能力，分别从以下方面做了优化：
+
+### 大量代码训练数据
+
+OpenAI于2021年7月推出了Codex [<sup>6</sup>](#evaluation-large-language-model) ，这是一个在GitHub代码的大型语料库上进行微调的GPT模型。研究表明，Codex可以解决非常困难的编程问题，并且在解决数学问题方面也有显著的性能提升 [<sup>7</sup>](#neural-network-math-problem)。
+
+代码数据除了提升复杂代码生成的能力，也会提升对于复杂问题的推理能力，特别是提升基于思维链的推理能力 [<sup>8</sup>](#llm-text-generation)。
+
+### 人类偏好对齐
+
+OpenAI对人类对齐的相关研究可以追溯到2017年（或更早）：[Learning from human preferences](https://openai.com/index/learning-from-human-preferences/)，文章中介绍了一种基于强化学习方法让模型从人类的标注反馈中学习到相关知识。
+
+![OpenAI Reinforcement Learning](./imgs/openai-rl-blog.png)
+
+这篇博客发布不久就继续发布了 PPO [<sup>9</sup>](#neural-network-math-problem) 方法，它现在已成为从人类偏好中学习的基础强化学习算法。
+
+在2022年又发布了InstructGPT [<sup>10</sup>](#instruct-gpt) 用于改进GPT-3模型的人类对齐方法，它正式建立了一个三阶段的人类反馈强化学习（Reinforcement Learning from Human Feedback，RLHF）算法
+
+![InstructGPT](./imgs/instruct-gpt.png)
+
 ## 参考文章
 
 * [1] [Doremi: Optimizing data mixtures speeds up language model pretraining](https://arxiv.org/abs/2305.10429) <div id="doremi" />
 * [2] [数据混合定律：通过预测语言模型表现优化数据配比](https://open-moss.com/cn/data-mixing-laws/) <div id="data-mixing-laws" />
+* [3] [OpenAI, “Gpt-4 technical report,”](https://arxiv.org/abs/2303.08774) <div id="gpt4-report" />
+* [4] [Emergent abilities of large language models](https://arxiv.org/abs/2206.07682) <div id="emergent-abilities-of-llm" />
+* [5] [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903) <div id="chain-of-thought-prompting" />
+* [6] [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374) <div id="evaluation-large-language-model" />
+* [7] [A Neural Network Solves, Explains, and Generates University Math Problems by Program Synthesis and Few-Shot Learning at Human Level](https://arxiv.org/abs/2112.15594) <div id="neural-network-math-problem" />
+* [8] [Pretrained Language Models for Text Generation: A Survey](https://arxiv.org/abs/2105.10311) <div id="llm-text-generation" />
+* [9] [Deep reinforcement learning from human preferences](https://arxiv.org/abs/1706.03741) <div id="ppo" />
+* [10] [Training language models to follow instructions with human feedback](https://arxiv.org/pdf/2203.02155) <div id="instruct-gpt" />

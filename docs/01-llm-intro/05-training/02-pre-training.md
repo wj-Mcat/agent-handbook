@@ -287,12 +287,41 @@ OpenAI对人类对齐的相关研究可以追溯到2017年（或更早）：[Lea
 
 以下是这三种方法的对比：
 
-以下是对您提供内容的翻译，并按照您的要求以markdown表格形式呈现不同方法：
 | 方法名称 | 方法详细介绍 |
 | --- | --- |
-| Post-LayerNorm | Post-LayerNorm 被用于原始的 [Transformer<sup>11</sup>](#vanilla-transformer)，位于残差块之间。<br /> 然而，现有研究发现，由于输出层附近的大梯度[267]，带有 Post-LayerNorm 的 Transformer 训练往往不稳定。因此，Post-LayerNorm 很少单独应用于现有的 LLM，除非与其他策略结合使用（例如，在 [GLM-130B<sup>18</sup>](#glm-130b) 和 Llama  中将 Post-LayerNorm 与 Pre-LayerNorm 结合）。 |
-| Pre-LayerNorm | 与 Post-LayerNorm 不同，Pre-LayerNorm [268] 在每个子层之前应用，并在最终预测之前增加一个额外的 LN。与 Post-LayerNorm 相比，带有 Pre-LayerNorm 的 Transformer 在训练中更加稳定。但是，它表现不如带有 Post-LayerNorm 的变体 [269]。尽管性能有所下降，大多数 LLM 仍然采用 Pre-LayerNorm，因为训练稳定性较高。然而，一个例外是当训练超过 100B 参数的模型时，在 GLM 中发现 Pre-LayerNorm 不稳定 [93]。 |
-| Sandwich-LN | - 基于 Pre-LayerNorm，Sandwich-LN [255] 在残差连接之前增加了额外的 LN，以避免 Transformer 层输出中的值爆炸问题。然而，已经发现 Sandwich-LN 有时未能稳定 LLM 的训练，并可能导致训练崩溃。 |
+| Post-LayerNorm | Post-LayerNorm 被用于原始的 [Transformer<sup>11</sup>](#vanilla-transformer)，位于残差块之间。<br /> 然而，现有研究发现，由于输出层附近的[大梯度<sup>19</sup>](#layer-norm-in-transformer)，带有 Post-LayerNorm 的 Transformer 训练往往不稳定。因此，Post-LayerNorm 很少单独应用于现有的 LLM，除非与其他策略结合使用（例如，在 [GLM-130B<sup>18</sup>](#glm-130b) 和 Llama  中将 Post-LayerNorm 与 Pre-LayerNorm 结合）。 |
+| Pre-LayerNorm | 与 Post-LayerNorm 不同，Pre-LayerNorm 在每个子层之前应用，并在最终预测之前增加一个额外的 LN。与 Post-LayerNorm 相比，带有 Pre-LayerNorm 的 Transformer 在训练中更加稳定。<br />但是，它表现不如带有 Post-LayerNorm 的变体。尽管性能有所下降，大多数 LLM 仍然采用 Pre-LayerNorm，因为训练稳定性较高。然而，一个例外是当训练超过 100B 参数的模型时，在 GLM 中发现 Pre-LayerNorm 不稳定。 |
+| Sandwich-LN | 基于 Pre-LayerNorm，Sandwich-LN 在残差连接之前增加了额外的 LN，以避免 Transformer 层输出中的值爆炸问题。然而，已经发现 Sandwich-LN 有时未能稳定 LLM 的训练，并可能导致训练崩溃。 |
+
+:::tip 疑问❓
+
+不知道Pre-LN和Post-LN对训练的影响是否能基于小型代理模型验证出来。
+
+:::
+
+### 激活函数
+
+为了提高模型的性能。GeLU是现有LLMs中广泛使用的激活函数，而SwiGLU和GeGLU是GLU激活函数的变体，在最新的LLMs中得到了应用，并在实践中取得了更好的性能。不过，与GeLU相比，它们在前馈网络中需要更多的参数。
+
+| 方法名称  | 方法详细介绍 |
+| :--: | :--: |
+| GeLU激活  | 在现有的大型语言模型（LLMs）中广泛使用的激活函数。 |
+| SwiGLU变体  | 实践中通常能实现更好的性能。相比GeLU，在前馈网络中需要额外的参数（约50%）。 |
+| GeGLU变体  | 实践中通常能实现更好的性能。相比GeLU，在前馈网络中需要额外的参数（约50%）。 |
+
+### 位置编码
+
+为了让模型学习到不同token的位置信息，就需要在模型当中加入位置编码模块：
+
+1. 绝对位置编码
+
+最原始模型中的位置编码方法就是可学习的绝对位置编码方法，此方法有一些很严重的缺点，比如说：难以处理长序列文本、缺乏外推性、占据大量的显存、可解释性比较差等。
+
+2. 相对位置编码
+
+
+### 注意力机制
+
 
 ## 参考文章
 
@@ -314,3 +343,4 @@ OpenAI对人类对齐的相关研究可以追溯到2017年（或更早）：[Lea
 * [16] [Root Mean Square Layer Normalization](https://arxiv.org/abs/1910.07467) <div id="rms-layernorm" />
 * [17] [DeepNet: Scaling Transformers to 1,000 Layers](https://arxiv.org/abs/2203.00555) <div id="deepnorm" />
 * [18] [GLM-130B: An Open Bilingual Pre-trained Model](https://arxiv.org/abs/2210.02414) <div id="glm-130b" />
+* [19] [On Layer Normalization in the Transformer Architecture](https://arxiv.org/abs/2002.04745) <div id="layer-norm-in-transformer" />

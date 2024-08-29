@@ -126,7 +126,173 @@ OpenAI对人类对齐的相关研究可以追溯到2017年（或更早）：[Lea
 
 ![InstructGPT](./imgs/instruct-gpt.png)
 
-### 
+## 模型架构设计
+
+当数据都准备好了，要想将模型真正训练起来，此时需要考虑主体模型架构、预训练目标函数、训练配置等。
+
+以下是主流模型的架构及其配置：
+
+![alt text](./imgs/models-architecture.png)
+
+### 主体架构类型
+
+* **Encoder-Decoder 架构**
+
+   最原始的 [《Attention Is All You Need》](#vanilla-transformer) 中的模型架构是 Encoder-Decoder 架构，架构图如下所示：
+
+   ![encoder-decoder architecture](./imgs/encoder-decoder-architecture.png)
+
+* **Encoder 架构**
+
+   在LLM（大语言模型）领域，encoder-only类型的模型主要指的是那些仅包含编码器部分，没有解码器的模型。这类模型的代表是BERT及其变体（如RoBERTa、ALBERT等）。以下将详细分析encoder-only类型模型的优缺点：
+
+   * 优点
+
+      1. **高效的编码能力**：
+
+         Encoder-only模型专注于对输入序列进行高效的编码和表示学习，能够捕捉丰富的上下文信息，非常适合于理解和分析文本的任务，如文本分类、情感分析等。
+
+      2. **计算效率高**：
+
+         相较于encoder-decoder架构，encoder-only模型在推理阶段通常具有更高的计算效率，因为它不需要进行解码过程，直接输出编码后的表示即可。
+
+      3. **易于训练**：
+
+         由于结构相对简单，encoder-only模型在训练过程中往往更容易收敛，训练成本相对较低。
+
+      4. **强大的表征学习能力**：
+
+         通过大规模预训练，encoder-only模型能够学习到高质量的文本表征，这些表征在多种下游任务中表现出色，具有广泛的适用性。
+
+      5. **双向注意力机制**：
+
+         Encoder-only模型通常采用双向注意力机制（如BERT中的Transformer编码器），这使得模型能够同时考虑输入序列的前后文信息，从而生成更加准确的文本表示。
+
+   * 缺点
+
+      1. **生成能力受限**：
+
+         由于缺乏解码器部分，encoder-only模型在生成文本或序列时存在局限性。它们通常无法直接用于生成任务，如文本生成、机器翻译等，需要通过额外的解码器或微调策略来实现生成功能。
+
+      2. **对长序列处理能力有限**：
+
+         虽然随着技术的发展，encoder-only模型对长序列的处理能力有所提升，但相较于decoder-only或encoder-decoder架构，它们在处理极长序列时仍可能面临挑战。这主要是因为双向注意力机制在处理长序列时计算复杂度较高。
+
+      3. **预训练与下游任务的不完全一致性**：
+
+         在某些情况下，encoder-only模型在预训练阶段学到的知识可能无法完全适应下游生成性任务的需求。这可能需要额外的适应或微调步骤来弥补这一差距。
+
+      4. **上下文理解方式的局限性**：
+
+         尽管encoder-only模型通过双向注意力机制能够捕捉丰富的上下文信息，但这种理解方式在某些任务中可能不如decoder-only模型那样直观和有效。decoder-only模型通过自回归的方式逐步生成文本，能够更自然地模拟人类写作过程。
+
+* **Decoder 架构**
+
+   LLM（Large Language Model）中Decoder-only类型的模型，以其独特的架构在自然语言处理领域取得了显著成就，尤其是以GPT系列为代表的模型。以下是Decoder-only类型模型的优缺点分析：
+
+   * 优点
+
+      1. **模型复杂度低**：
+
+         Decoder-only架构去除了编码器部分，仅包含解码器，使得模型结构更加简化，参数数量和计算复杂性显著降低。这种简化的设计使得模型在训练过程中更容易处理大规模数据，提高了训练效率和模型的泛化能力。
+
+      2. **上下文理解能力强**：
+
+         在Decoder-only架构中，解码器可以直接利用输入序列进行解码，无需经过编码器的转换过程。这种直接的上下文理解方式使得模型能够更好地捕捉和利用输入序列的细节信息，从而生成更加准确和连贯的文本。
+
+      3. **语言能力强**：
+
+         Decoder-only架构通过自注意力机制等手段对输入序列进行编码和解码，从而在语言能力上具有显著优势。这种架构使得LLM能够更好地理解和生成自然语言文本，无论是语法、语义还是语境层面都能达到较高的准确度。
+
+      4. **预训练效率高**：
+         在预训练阶段，Decoder-only架构的LLM可以利用大规模的无监督文本数据进行高效预训练。这种预训练方式不仅提高了模型的泛化能力和性能，还使得模型能够更好地适应各种自然语言处理任务。
+
+      5. **灵活性高**：
+
+         Decoder-only架构的模型具有更强的灵活性，可以处理多种不同类型的文本生成任务，如聊天机器人、内容创作、问答等，无需针对每一种任务进行专门的训练或调整。
+
+      6. **参数量适当时zero-shot性能强**：
+
+         实验表明，在参数量不太大时，Decoder-only模型具有更强的zero-shot性能，即无需任何标注数据即可直接应用于新任务。
+
+   * 缺点
+
+      1. **无法处理双向信息交互任务**：
+
+         Decoder-only架构的模型无法进行编码，因此无法处理一些需要双向信息交互的任务，如文本分类、情感分析等。在这些任务中，通常需要同时考虑输入序列的整体信息，而Decoder-only模型只能基于先前的输出生成新文本。
+
+      2. **长期依赖问题**：
+
+         Decoder-only模型在处理长序列时可能面临长期依赖问题，即在长文本中维持上下文一致性和相关性可能表现不佳。这是因为模型在生成新文本时主要依赖于先前生成的文本，而不是直接从原始输入中提取信息。
+
+      3. **可能出现“幻觉”**：
+
+         Decoder-only模型在生成文本时更易出现“幻觉”现象，即生成与输入事实不符的文本。这是因为模型在生成新文本时主要依赖于先前生成的文本和自身的知识库，而不是严格基于输入序列进行推理。
+
+      4. **训练难度相对较大**：
+
+         Decoder-only架构的训练难度相对较大，因为每个位置在预测下一个Token时接触的信息更少，预测难度更高。然而，随着模型规模的增大和数据量的增加，这种训练难度可以在一定程度上得到缓解。
+
+* **Attention 对比**
+
+   以上三种类型的架构基座方法都是基于 Transformer 架构，其中最主要的区别在于 Attention，其区别所示图如下：
+   
+   ![attention patterns](./imgs/attention-patterns.png)
+
+   <center>comparison of the attention patterns in three mainstream architectures</center>
+
+   其中：
+   * Causal Decoder Attention：解码阶段每一个token都只能看到之前的所有token（当然你也可以控制前面的tokens，哪些要学，哪些不要学），所以是一个下三角矩阵。
+   * Prefix Decoder Attention: 在prefix阶段，每个token 都可以互相**看得到**，在decode 阶段，便是一个 Causal Decoder Attention，具体内容和形式可见上图。此Attention 应用与 Decoder-Only 的模型。
+   * Encoder-Decoder Attention：此内容和作用和 Prefix Decoder Attention 相同，只不过面向的模型架构不一样，此 Attention 应用与 Encoder-Decoder 架构。
+
+* **Mixture of Expert(MoE)**
+
+   除了常规的以上架构，今年的MoE架构也备受关注，每个输入的神经网络权重子集被稀疏激活：选择部分 Expert Weight参与计算，此时算是一种激活的方式。此时便可以减少计算量，提高模型吞吐。
+
+   MoE 是一种灵活的模型架构，可以在保持恒定计算成本的同时扩展模型参数，通过增加专家数量或总参数大小，可以观察到显著的性能提升。 [<sup>12</sup>](#unified-scaling-laws-for-moe)
+
+   目前已经有多种模型都是基于MoE 的架构，如下所示：
+
+* **新架构**
+
+   Transformer 的生成效率其实比较第，无法实现并行生成，此时为了持续优化 Decoder-Only 架构并保持模型架构的技术领先型，此业界也是出现了多种新架构：
+
+   | 模型名称  | 描述    |
+   |-----|--------|
+   | SSM 系列模型  | 参数化状态空间模型，旨在提高处理长输入时的效率，通过递归生成输出和并行编码整个句子来实现。比如：Mamba, Jamba, Zamba [<sup>13</sup>](#unified-scaling-laws-for-moe) |
+   | Hyena  | 采用长卷积的模型，旨在提高处理长输入序列的效率，支持递归生成输出和并行编码整个句子，利用FFT等技术加速。 |
+   | RWKV  | 类似Transformer的架构，但融入了递归更新机制，提高了处理长输入的效率，支持递归输出生成和并行编码，可利用FFT等技术加速。|
+   | RetNet  | 另一种类似Transformer的架构，也采用了递归更新机制，旨在提高长输入序列的处理效率，支持递归输出和并行编码，可利用Chunkwise Recurrent等技术加速。|
+
+虽然很多模型主体还是基于 Transformer [<sup>11</sup>](#vanilla-transformer) 主体架构，可为了提升模型的训练、推理效果和性能，不同模型做了一些工作。接下来我将详细介绍不同细节方法上的区别。
+
+### Normalization 系列方法
+
+训练不稳定性是预训练大型语言模型（LLMs）时面临的一个挑战性问题。为了缓解这一问题，标准化是一种广泛采用的策略，用以稳定神经网络的训练。
+
+当前用的主流 Normalization 的方法如下所示：
+
+以下是以markdown table的形式对不同方法进行的介绍：
+
+| 方法名称 | 方法详细介绍 |
+| --- | --- |
+| [LayerNorm<sup>14</sup>](#layernorm) | 在早期研究中，[BatchNorm<sup>15</sup>](#batch-normalization) 是一种常用的归一化方法。然而，它难以处理可变长度的序列数据和小批量数据。<br /> 因此，引入了 [LayerNorm<sup>14</sup>](#layernorm) 进行逐层归一化。具体来说，LayerNorm 计算每一层所有激活值的均值和方差，以便对激活值进行重新居中和重新缩放。 |
+| [RMSNorm<sup>16</sup>](#rms-layernorm) | 旨在提高 LayerNorm (LN) 的训练速度，RMSNorm 仅使用激活值总和的均方根（RMS）对激活值进行重新缩放，而不是使用均值和方差，其中代表模型为 Llama1-3。 |
+| [DeepNorm<sup>17</sup>](#deepnorm) | 由Microsoft 提出，用于稳定深度Transformer 的训练，将DeepNorm 作为残差连接，Transformer 可以扩展到1000层，这显示了其在稳定性和良好性能方面的优势。[GLM-130B<sup>18</sup>](#glm-130b) 已经采用了这种方法。 |
+
+这些归一化方法在深度学习模型的训练中起着重要作用，每种方法都有其独特的优势和适用场景。
+
+除了以上常识外，开发过模型底层架构的同学可能对 Normalization 的位置可能也是熟悉：Pre-LayerNorm、Post-LayerNorm 以及 Sandwich-LayerNorm。
+
+以下是这三种方法的对比：
+
+以下是对您提供内容的翻译，并按照您的要求以markdown表格形式呈现不同方法：
+| 方法名称 | 方法详细介绍 |
+| --- | --- |
+| Post-LayerNorm | Post-LayerNorm 被用于原始的 [Transformer<sup>11</sup>](#vanilla-transformer)，位于残差块之间。<br /> 然而，现有研究发现，由于输出层附近的大梯度[267]，带有 Post-LayerNorm 的 Transformer 训练往往不稳定。因此，Post-LayerNorm 很少单独应用于现有的 LLM，除非与其他策略结合使用（例如，在 [GLM-130B<sup>18</sup>](#glm-130b) 和 Llama  中将 Post-LayerNorm 与 Pre-LayerNorm 结合）。 |
+| Pre-LayerNorm | 与 Post-LayerNorm 不同，Pre-LayerNorm [268] 在每个子层之前应用，并在最终预测之前增加一个额外的 LN。与 Post-LayerNorm 相比，带有 Pre-LayerNorm 的 Transformer 在训练中更加稳定。但是，它表现不如带有 Post-LayerNorm 的变体 [269]。尽管性能有所下降，大多数 LLM 仍然采用 Pre-LayerNorm，因为训练稳定性较高。然而，一个例外是当训练超过 100B 参数的模型时，在 GLM 中发现 Pre-LayerNorm 不稳定 [93]。 |
+| Sandwich-LN | - 基于 Pre-LayerNorm，Sandwich-LN [255] 在残差连接之前增加了额外的 LN，以避免 Transformer 层输出中的值爆炸问题。然而，已经发现 Sandwich-LN 有时未能稳定 LLM 的训练，并可能导致训练崩溃。 |
 
 ## 参考文章
 
@@ -140,3 +306,11 @@ OpenAI对人类对齐的相关研究可以追溯到2017年（或更早）：[Lea
 * [8] [Pretrained Language Models for Text Generation: A Survey](https://arxiv.org/abs/2105.10311) <div id="llm-text-generation" />
 * [9] [Deep reinforcement learning from human preferences](https://arxiv.org/abs/1706.03741) <div id="ppo" />
 * [10] [Training language models to follow instructions with human feedback](https://arxiv.org/pdf/2203.02155) <div id="instruct-gpt" />
+* [11] [Attention Is All You Need](https://arxiv.org/abs/1706.03762) <div id="vanilla-transformer" />
+* [12] [Unified Scaling Laws for Routed Language Models](https://arxiv.org/abs/2202.01169) <div id="unified-scaling-laws-for-moe" />
+* [13] [Zamba: A Compact 7B SSM Hybrid Model](https://arxiv.org/html/2405.16712v1) <div id="zamba" />
+* [14] [Layer Normalization](https://arxiv.org/abs/1607.06450) <div id="layernorm" />
+* [15] [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167) <div id="batch-normalization" />
+* [16] [Root Mean Square Layer Normalization](https://arxiv.org/abs/1910.07467) <div id="rms-layernorm" />
+* [17] [DeepNet: Scaling Transformers to 1,000 Layers](https://arxiv.org/abs/2203.00555) <div id="deepnorm" />
+* [18] [GLM-130B: An Open Bilingual Pre-trained Model](https://arxiv.org/abs/2210.02414) <div id="glm-130b" />

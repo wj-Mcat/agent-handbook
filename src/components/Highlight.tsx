@@ -1,4 +1,7 @@
-export const Highlight = ({children, color}) => (
+import React from 'react';
+
+export default function Hl({children, color}) {
+  return (
     <span
       style={{
         backgroundColor: color,
@@ -9,3 +12,4 @@ export const Highlight = ({children, color}) => (
       {children}
     </span>
   );
+}

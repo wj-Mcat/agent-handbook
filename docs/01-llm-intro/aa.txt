@@ -1,0 +1,77 @@
+
+
+9B  32B  130B
+
+1000-2000   700-1200    500-1000
+
+2-3
+
+function_call/rag_response/classification(72%  -> 90%)
+
+
+function_call:
+* prompt（user/assistant)
+```system
+ role
+ tools
+ <|user|>
+ 帮我规划一个早上...
+ <|assistant|>
+ <think>....
+ Plan:
+ 1. 导航去天安门
+ <|assistant|>
+ ```python
+ tool_name-A(param_1=, params2=)
+ ```<|observation|>
+ json: tool_output
+ <|assistant|>
+ <reflection>....
+ <|assistant|>tool_name-B
+ ```python
+ tool_name-B(param_1=, params2=)
+ ```<|observation|>
+ json: tool_output
+ <|assistant|>
+ final_answwer
+```
+
+* 执行
+
+
+荣耀PlanAgent
+
+帮我导航去天安门
+
+TP
+
+MHA
+q=W_q(x)
+k=W_w(x)
+v=W_v(x)
+
+attention_score = softmax(q^ * k/sqrt(h)) 
+output = attention_score * v
+
+MLP(column_parallel(W_))
+gate_proj, up_project, down_pro
+
+tp=4
+GPU [32, hidden_size]
+
+8/hidden_size
+
+embedding, transformer_layers, lm_head
+
+4-ranks: Domain Agent -> SFT() -> BI(NL2SQL) Agent -> web_search
+
+Post-PreTraining() -> Base -> Chat
+
+财务会计专家(Qwen) (SFT/DPO 数据)
+
+tp/pp
+
+zero_2
+{
+
+}

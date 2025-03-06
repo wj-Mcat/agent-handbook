@@ -1,8 +1,8 @@
 ---
 slug: enhancing-tool-generalization-in-language-models-through-zero-to-one-and-weak-to-strong-simulation
-title: <Paper Reading> GenTool
+title: <PR> GenTool
 authors: wj-Mcat
-tags: [tools, Function Call, Agent]
+tags: [Paper Reading, tools, Function Call, Agent]
 toc_min_heading_level: 2
 toc_max_heading_level: 5
 ---

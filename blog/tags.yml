@@ -11,6 +11,10 @@ tools:
   permalink: /tools
   description: the tool usage
 
+Paper Reading:
+  label: Paper Reading
+  permalink: /paper-reading
+  description: the paper reading threads
 Function Call:
   label: Function Call
   permalink: /function-call

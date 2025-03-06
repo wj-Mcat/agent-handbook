@@ -11,7 +11,7 @@ toc_max_heading_level: 5
 
 ## 一、解决的问题
 
-本论文主要解决基座模型在 `UnSeen Tool` 和 `UnSeen Query` 上的泛化能力。
+本论文主要解决模型在 `UnSeen Tool` 和 `UnSeen Query` 上的泛化能力，方法还是集中在训练数据的构造上。
 
 ## 二、方法
 
@@ -19,22 +19,28 @@ toc_max_heading_level: 5
 
 ### 2.1 合成数据
 
-模型如果仅在现有的训练数据集上训练，通常和真实的场景存在 Gap，此时作者提出一个合成数据的方法来缓解此问题。
+合成数据的构建 Pipeline 如下所示：
 
-#### Tool Generation <div id="tool-generation" />
+![alt text](./imgs/gen-tool-synthetic-data.png)
 
-灵感来源于：同样是要完成一个任务，如果有一个 Strong Tool $C$ 和 Weak Tool $C`$，此时模型肯定要选择 Strong Tool $C$。
+背景：模型如果仅在现有的训练数据集上训练，通常和真实的场景存在 Gap，此时作者提出一个合成数据的方法来缓解此问题。
 
-那Strong Tool 和 Weak Tool 的区别是什么呢？
+#### Stage 1: Tool Generation <div id="tool-generation" />
+
+灵感来源于：同样是要完成一个任务，如果有一个 Strong Tool $C$ 和 Weak Tool $C`$，此时模型肯定要选择 Strong Tool $C$，所以在构建训练数据时，需要将 Strong Tool 和 Weak Tool 同时放在 tool-set 当中，让模型能够去选择对应的 Strong Tool。
+
+那Strong Tool 和 Weak Tool 的区别是什么呢？举个栗子：
 * Query: 纽约市最好的餐厅有哪些？有哪些菜系？
-* Strong Tool：能够查找出纽约最好的餐厅有哪些，也能够查找出纽约有哪些菜系。
-* Weak Tool：只能查找出纽约最好的餐厅有哪些，不能查找出纽约有哪些菜系。
+* Strong Tool能够查找出纽约最好的餐厅有哪些，也能够查找出纽约有哪些菜系。
+* Weak Tool只能查找出纽约最好的餐厅有哪些，不能查找出纽约有哪些菜系。
 
-在训练数据集中的 Tool 皆为 Strong Tool，于是使用 LLM + Prompt[<sup>weak tool prompt</sup>](#generate-weak-tool-prompt) 来生成对应的 Weak Tool 加入到训练数据集中。
+那 Strong/Weak Tool 如何构造呢？
 
-#### Query Generation
+在原始训练数据集中的 Tool 皆为 Strong Tool（ground truth tool 能够解决 query 中的问题），于是使用 Prompt[<sup>weak tool prompt</sup>](#generate-weak-tool-prompt) 来生成对应的 Weak Tool 并加入到训练数据集中。
 
-以上生成了 Strong Tool 和 Weak Tool，那 Query 也是需要进行泛化的，原因是在于原始 query 没办法很好的让模型具体选择哪个工具，此时需要使用 LLM 来生成 10 个 query：
+#### Stage 2: Query Generation
+
+以上生成了 Strong Tool 和 Weak Tool，那 Query 也是需要进行泛化的，原因是在于原始 query 没办法 **很好** 的让模型具体选择哪个工具，此时需要使用 LLM 来生成 10 个 query：
 * 能够完全被 Weak Tool 所解决。
 * 部分只能够被 Strong Tool 所解决。
 
@@ -49,7 +55,11 @@ toc_max_heading_level: 5
 
 此时前两个就能够被 Weak Tool 所解决，后两个就能够被 Strong Tool 所解决。然后这些相似的 query 都加入到训练数据集中训练，进而能够让模型精准识别目标工具，进而提升模型的工具调用准确性。
 
-#### Calling Inforamtion Genration
+这样在构建训练数据时，如果 Strong Tool 和 Weak Tool 都存在，那么模型就会优先选择 Strong Tool，如果只有 Weak Tool，那么模型在前两个 query 上就会选择 Weak Tool，在后两个 query 上就会选择 `generate_response` 这个拒答工具。
+
+> 此部分在原始论文中没有体现，为个人在读 paper 的过程中根据经验推测而来，也欢迎各位参与讨论。
+
+#### Stage 3: Calling Inforamtion Genration
 
 因为 Strong Tool 和 Weak Tool 在参数上面有所不同，此时对应 Calling Information 也会有所不同，所以需要使用 LLM 来生成对应的 Calling Information，作者使用 GPT-4o 来生成对应的参数。
 

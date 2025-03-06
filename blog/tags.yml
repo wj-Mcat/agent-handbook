@@ -10,3 +10,8 @@ tools:
   label: Tool
   permalink: /tools
   description: the tool usage
+
+Function Call:
+  label: Function Call
+  permalink: /function-call
+  description: the function call unit

@@ -2,6 +2,8 @@
 title: "Function Call 技术详解"
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## 一：Function Call 介绍
 随着ChatGPT等通用大模型的出现，它们可以生成令人惊叹的自然语言，使得机器能够更好地理解和回应人类的需求，但在特定领域的任务上仅靠通用问答是无法满足日常工作需要。随着OpenAI推出了Function Call功能，工具调用能力越来越作为开源模型的标配。
@@ -852,8 +854,81 @@ xxx 的天气是 yyy
 <|user|>
 ```
 
-## 训练数据的构造技巧
+## 五：训练数据的构造技巧
 
-### 泛化性的提升技巧
+### 5.1 泛化性的提升技巧
 
+在实际 FunctionCall 使用过程中通常会出现：模型在新工具上的效果不太好，同时如何在相似度很高的工具之间选择一个正确的也是一个挑战。
+
+此时如何提高模型的泛化性需要在数据上做一些trick，接下来我将介绍一些基础的方法技巧来解决此问题。
+
+#### 5.1.1 同一个工具不要重复学习
+
+在训练数据中，同一个工具避免重复学习，进而防止在某些工具上过拟合，影响最终模型的泛化性。
+
+宗旨就是：增加工具的数量，减少在某些工具上的学习次数。
+
+:::success 什么称为学习某些工具呢？
+
+工具相关信息在整个训练 Prompt 当中在两个地方存在：
+1. System prompt 的 tool-set spec，这个是存放批量工具的 OpenAPI 的格式信息，是不参与 loss 计算，也就是只会被模型**看到**，不会被 ***学习***。
+2. Assistant 回复中的 tool_calls，这个是存放具体工具的调用信息，这个是参与 loss 计算，也就是会被模型**看到**，也会被模型 ***学习***。
+
+:::
+
+解决方案：
+1. 在训练数据集中，通过工具在 tool_calls 中出现的次数来过滤，尽量不要大于 k 次（比如出现的次数不要超过 4 次）。
+2. 同一个工具，用大模型将：`tool_name`, `tool_description`,`tool_parameter name` 这些信息都改写一下，于是一个工具 **即使换了张脸** [<sup>附录 A</sup>](#tool-new-face) 模型还能够准确识别，此方法也是能够提升 Model 对于不同工具的泛化性。
+
+
+:::warning 垂类固定场景
+
+如果在垂类业务微调场景仅仅包含几个固定的工具，后续不会发生变化，此 trick 将不使用与此场景。
+
+:::
+
+#### 5.1.2 工具相似，但不符合真实场景
+
+:::info
+
+
+
+:::
+
+## 附录
+
+### A. 给工具换脸 <div id="tool-new-face" />
+
+什么是给工具换脸呢？就是工具的作用是一模一样，只不过工具名称、工具描述、工具的输入参数字段名称以及工具输入参数字段的描述都更换了。比如：
+
+<Tabs>
+  <TabItem value="before" label="换脸前" default>
+    ```json
+    {
+        "name": "get_user_github_info",
+        "description": "根据用户的姓名获取 github 基础公开信息，比如：followers、bio、email、location 等信息",
+        "parameters": {
+            "user_name": {
+                "description": "用户的名称，通常是英文字符"
+            },
+        }
+    }
+    ```    
+  </TabItem>
+  <TabItem value="after" label="换脸后">
+    ```json
+    {
+        "name": "gh_info",
+        "description": "获取用户 github 基础公开信息，比如：followers、bio、email、location 等信息",
+        "parameters": {
+            "name": {
+                "description": "用户的名称，通常是由英文字符组成"
+            },
+        }
+    }
+    ```    
+  </TabItem>
+</Tabs>
+
+开发者可通过 `GeneralizationPrompt` 对 `OpenAPI Schema` 中的不同字段进行泛化，然后用 `VerifierPrompt` 对泛化后的内容进行检查，进而构建一个自动化泛化的流程。
 

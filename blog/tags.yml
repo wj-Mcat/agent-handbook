@@ -15,7 +15,13 @@ Paper Reading:
   label: Paper Reading
   permalink: /paper-reading
   description: the paper reading threads
+
 Function Call:
   label: Function Call
   permalink: /function-call
   description: the function call unit
+
+Reason:
+  label: Reason
+  permalink: /reason
+  description: the tag of reason

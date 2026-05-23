@@ -84,7 +84,7 @@ best_of_n.generate(query_tensors, device=device)
 
 ![alt text](./imgs/google-star.png)
 
-> Query -> repsonse (false) -> response -> cot
+> Query -> response (false) -> response -> cot
 
 #### 1. 推理的重要性：
   - 文档首先强调了推理在人类决策中的重要性，并指出在数学、常识问答等复杂任务中，显式生成推理步骤（即“理由”）可以显著提高语言模型的表现。

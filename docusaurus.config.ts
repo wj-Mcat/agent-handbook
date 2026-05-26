@@ -62,6 +62,20 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'llms',
+        path: 'llms',
+        routeBasePath: 'llms',
+        sidebarPath: './sidebarsLlms.ts',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+    ],
+  ],
+
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -81,11 +95,25 @@ const config: Config = {
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
+          docsPluginId: 'default',
           position: 'left',
-          label: '手册',
+          label: 'Agent',
         },
-        {to: '/blog', label: '博客', position: 'left'},
-        {to: '/about-me', label: '关于我', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'llmsSidebar',
+          docsPluginId: 'llms',
+          position: 'left',
+          label: 'LLMs',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'paperReadingSidebar',
+          docsPluginId: 'default',
+          position: 'left',
+          label: 'Paper Reading',
+        },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/wj-Mcat/agent-handbook',
           label: 'Github',

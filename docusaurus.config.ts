@@ -3,6 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import giscusHighlightsPlugin from './plugins/giscusHighlights';
 
 const config: Config = {
   title: '《Agent Handbook》',
@@ -64,12 +65,42 @@ const config: Config = {
 
   plugins: [
     [
+      giscusHighlightsPlugin,
+      {
+        owner: 'wj-Mcat',
+        repo: 'agent-handbook',
+        category: 'General',
+      },
+    ],
+    [
       '@docusaurus/plugin-content-docs',
       {
         id: 'llms',
         path: 'llms',
         routeBasePath: 'llms',
         sidebarPath: './sidebarsLlms.ts',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'paper-reading',
+        path: 'paper-reading',
+        routeBasePath: 'paper-reading',
+        sidebarPath: './sidebarsPaperReading.ts',
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'weekly-paper',
+        path: 'weekly-paper',
+        routeBasePath: 'weekly-paper',
+        sidebarPath: './sidebarsWeeklyPaper.ts',
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
       },
@@ -109,9 +140,16 @@ const config: Config = {
         {
           type: 'docSidebar',
           sidebarId: 'paperReadingSidebar',
-          docsPluginId: 'default',
+          docsPluginId: 'paper-reading',
           position: 'left',
           label: 'Paper Reading',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'weeklyPaperSidebar',
+          docsPluginId: 'weekly-paper',
+          position: 'left',
+          label: 'Weekly Paper',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {

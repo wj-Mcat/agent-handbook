@@ -4,17 +4,19 @@ import type DocItemFooterType from "@theme/DocItem/Footer";
 import type { WrapperProps } from "@docusaurus/types";
 import { useDoc } from "@docusaurus/theme-common/internal";
 import GiscusComponent from "@site/src/components/GiscusComponent";
+import TextAnnotations from "@site/src/components/TextAnnotation";
 
 type Props = WrapperProps<typeof DocItemFooterType>;
 
 export default function DocItemFooterWrapper(props: Props): JSX.Element {
   const { metadata } = useDoc();
-  const { comments = true } = metadata.frontMatter;
+  const { comments = true, annotations = true } = metadata.frontMatter;
 
   return (
     <>
       <DocItemFooter {...props} />
       {comments && <GiscusComponent />}
+      {annotations && <TextAnnotations />}
     </>
   );
 }

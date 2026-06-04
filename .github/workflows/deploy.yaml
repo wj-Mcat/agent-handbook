@@ -4,13 +4,37 @@ on:
   push:
     branches:
       - master
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+  # Giscus 评论 / Discussion 变更后重新构建，刷新正文高亮数据（plugins/giscusHighlights.ts）
+  discussion:
+    types:
+      - created
+      - edited
+      - deleted
+  discussion_comment:
+    types:
+      - created
+      - edited
+      - deleted
+  workflow_dispatch:
+
+# 连续多条评论时只保留最新一次部署，避免排队
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
 
 jobs:
   build:
     name: Build Docusaurus
     runs-on: ubuntu-latest
+    # push / 手动触发：始终构建；Discussion 事件：仅 General 分类（与 Giscus 配置一致）
+    if: >-
+      github.event_name == 'push' ||
+      github.event_name == 'workflow_dispatch' ||
+      github.event.discussion.category.name == 'General'
+    # 读取仓库 Discussions 评论以生成正文高亮
+    permissions:
+      contents: read
+      discussions: read
     steps:
       - uses: actions/checkout@v5
         with:
@@ -24,6 +48,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build website
         run: yarn build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v4

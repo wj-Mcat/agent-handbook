@@ -1,0 +1,251 @@
+.timeline {
+  --timeline-rail-x: 6.75rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* 贯穿整条时间轴的竖线 */
+.list::before {
+  content: '';
+  position: absolute;
+  left: var(--timeline-rail-x);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ifm-color-emphasis-300);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.dateCol {
+  position: relative;
+  text-align: right;
+  padding-top: 0.1rem;
+}
+
+/* —— 阶段分隔（divider）—— */
+.divider {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 7.5rem) 1fr;
+  gap: 0.75rem 1.25rem;
+  padding: 1.5rem 0 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.divider:first-child {
+  padding-top: 0;
+}
+
+.dividerMarker {
+  position: absolute;
+  right: -1.25rem;
+  top: 50%;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 2px;
+  background: var(--ifm-color-primary);
+  border: 2px solid var(--ifm-color-primary);
+  box-shadow: 0 0 0 4px var(--ifm-background-color);
+  transform: translate(50%, -50%) rotate(45deg);
+  z-index: 2;
+}
+
+.dividerBody {
+  padding-top: 0.15rem;
+}
+
+.dividerTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 0.5rem;
+  font-size: var(--ifm-h3-font-size);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.dividerTitle::before,
+.dividerTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to var(--divider-fade-direction, right),
+    transparent,
+    var(--ifm-color-emphasis-400) 20%,
+    var(--ifm-color-emphasis-400) 80%,
+    transparent
+  );
+}
+
+.dividerTitle::before {
+  --divider-fade-direction: right;
+}
+
+.dividerTitle::after {
+  --divider-fade-direction: left;
+}
+
+.dividerTitleText {
+  flex-shrink: 0;
+  max-width: 85%;
+  text-align: center;
+  color: var(--ifm-heading-color);
+}
+
+.dividerIntro {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* —— 事件节点 —— */
+.item {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 7.5rem) 1fr;
+  gap: 0.75rem 1.25rem;
+  padding: 0 0 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.date {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ifm-color-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.marker {
+  position: absolute;
+  right: -1.25rem;
+  top: 0.45rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--ifm-background-color);
+  border: 2px solid var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px var(--ifm-background-color);
+  transform: translateX(50%);
+  z-index: 2;
+}
+
+.content {
+  background: var(--ifm-card-background-color, var(--ifm-background-surface-color));
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-global-radius);
+  padding: 0.85rem 1rem 0.95rem;
+  box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.eventTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.45rem;
+  line-height: 1.45;
+}
+
+.significance {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.linkRow {
+  margin: 0.55rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.link {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.linkSep {
+  margin: 0 0.4rem;
+  color: var(--ifm-color-emphasis-500);
+}
+
+@media screen and (max-width: 576px) {
+  .timeline {
+    --timeline-rail-x: 0.3rem;
+  }
+
+  .divider,
+  .item {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding-left: 1.25rem;
+  }
+
+  .divider {
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .divider:first-child {
+    padding-top: 0;
+  }
+
+  .dateCol {
+    text-align: left;
+    padding-left: 0.5rem;
+    min-height: 0.5rem;
+  }
+
+  .dividerMarker {
+    left: 0;
+    right: auto;
+    top: 0.35rem;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .marker {
+    left: 0;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .dividerTitle {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .dividerTitle::before,
+  .dividerTitle::after {
+    display: none;
+  }
+
+  .dividerTitleText {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .date {
+    font-size: 0.8rem;
+  }
+}

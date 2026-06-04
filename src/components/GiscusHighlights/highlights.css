@@ -1,0 +1,44 @@
+/* Giscus 评论高亮的全局样式（::highlight 以注册名生效，必须是全局样式） */
+/* 使用蓝色系，与划词评论（TextAnnotation，黄色系）区分 */
+::highlight(giscus-highlight) {
+  background-color: rgba(64, 196, 255, 0.26);
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: rgba(2, 136, 209, 0.85);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+::highlight(giscus-highlight-active) {
+  background-color: rgba(64, 196, 255, 0.5);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: rgba(2, 119, 189, 0.95);
+  text-decoration-thickness: 2px;
+}
+
+[data-theme='dark'] ::highlight(giscus-highlight) {
+  background-color: rgba(64, 196, 255, 0.2);
+}
+
+[data-theme='dark'] ::highlight(giscus-highlight-active) {
+  background-color: rgba(64, 196, 255, 0.38);
+}
+
+/* 不支持 Highlight API 时的 overlay 回退层（绝对定位矩形，不改动正文 DOM） */
+.giscusHighlightOverlayLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.giscusHighlightOverlayRect {
+  position: absolute;
+  background-color: rgba(64, 196, 255, 0.26);
+  border-radius: 2px;
+}
+
+.giscusHighlightOverlayRect.active {
+  background-color: rgba(64, 196, 255, 0.5);
+}

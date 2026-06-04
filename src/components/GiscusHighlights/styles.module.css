@@ -102,3 +102,77 @@
 .link:hover {
   text-decoration: underline;
 }
+
+/* 高亮文本末尾的评论数角标（icon + 数字） */
+.badgeLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 45;
+}
+
+.badge {
+  position: fixed;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px 1px 4px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #01579b;
+  background: rgba(227, 242, 253, 0.96);
+  border: 1px solid rgba(2, 136, 209, 0.45);
+  box-shadow: 0 1px 4px rgba(2, 119, 189, 0.2);
+  cursor: pointer;
+  pointer-events: auto;
+  transform: translateY(-50%);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.badge:hover {
+  background: rgba(187, 222, 251, 0.98);
+  border-color: rgba(2, 119, 189, 0.7);
+  box-shadow: 0 2px 6px rgba(2, 119, 189, 0.28);
+}
+
+.badgeActive {
+  color: #fff;
+  background: rgba(2, 136, 209, 0.92);
+  border-color: rgba(1, 87, 155, 0.9);
+  box-shadow: 0 2px 8px rgba(2, 119, 189, 0.35);
+}
+
+.badgeActive:hover {
+  background: rgba(2, 119, 189, 0.95);
+}
+
+.badgeIcon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.badgeCount {
+  min-width: 0.6em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-theme='dark'] .badge {
+  color: #b3e5fc;
+  background: rgba(13, 71, 161, 0.88);
+  border-color: rgba(79, 195, 247, 0.4);
+}
+
+[data-theme='dark'] .badge:hover {
+  background: rgba(21, 101, 192, 0.92);
+}
+
+[data-theme='dark'] .badgeActive {
+  color: #e1f5fe;
+  background: rgba(2, 136, 209, 0.95);
+}

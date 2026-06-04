@@ -13,34 +13,59 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: '图灵发表《计算机器与智能》，提出「图灵测试」',
         description:
           '首次系统地提出「机器能否思考」这一命题，成为后世衡量语言智能的隐喻性标尺',
+        links: [
+          {label: '原文 (Mind, 1950)', href: 'https://academic.oup.com/mind/article/LIX/236/433/986201'},
+          {label: 'Stanford Encyclopedia', href: 'https://plato.stanford.edu/entries/turing-test/'},
+        ],
       },
       {
         date: '1966',
         title: 'Joseph Weizenbaum 开发 ELIZA',
         description:
           '最早的对话程序之一，用模式匹配模拟心理咨询师，展示了人对机器对话的投射心理',
+        links: [
+          {label: 'ACM 论文', href: 'https://dl.acm.org/doi/10.1145/365912.365947'},
+          {label: 'Weizenbaum 著作 (1976)', href: 'https://mitpress.mit.edu/9780262230606/computer-power-and-human-reason/'},
+        ],
       },
       {
         date: '1980s–1990s',
         title: '统计语言模型（n-gram）兴起',
         description: '用概率建模「下一个词」，成为机器翻译、语音识别的主力方法',
+        links: [
+          {label: 'SLP3 教材 (n-gram 章节)', href: 'https://web.stanford.edu/~jurafsky/slp3/3.pdf'},
+          {label: 'Shannon (1948) 信息论奠基', href: 'https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf'},
+        ],
       },
       {
         date: '2003',
         title: 'Bengio 等提出神经概率语言模型',
         description: '首次用神经网络学习词的分布式表示，奠定「词向量」思路',
+        links: [
+          {label: 'JMLR 论文', href: 'https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf'},
+          {label: 'NeurIPS 2003 摘要', href: 'https://papers.nips.cc/paper/1839-a-neural-probabilistic-language-model'},
+        ],
       },
       {
         date: '2013',
         title: 'Google 发布 word2vec（Mikolov 等）',
         description:
           '高效学习词嵌入，「国王 - 男人 + 女人 ≈ 女王」成为经典示例',
+        links: [
+          {label: 'arXiv:1301.3781 (CBOW/Skip-gram)', href: 'https://arxiv.org/abs/1301.3781'},
+          {label: 'arXiv:1310.4546 (Negative Sampling)', href: 'https://arxiv.org/abs/1310.4546'},
+          {label: 'Google Code Archive', href: 'https://code.google.com/archive/p/word2vec/'},
+        ],
       },
       {
         date: '2014',
         title: 'Seq2Seq（序列到序列）与注意力机制雏形',
         description:
           'Sutskever 等提出编码器-解码器框架；Bahdanau 等引入注意力，解决长序列翻译难题',
+        links: [
+          {label: 'Seq2Seq (arXiv:1409.3215)', href: 'https://arxiv.org/abs/1409.3215'},
+          {label: 'Attention (arXiv:1409.0473)', href: 'https://arxiv.org/abs/1409.0473'},
+        ],
       },
     ],
   },
@@ -54,29 +79,49 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: 'Google 发表《Attention Is All You Need》，提出 **Transformer**',
         description:
           '抛弃循环结构，纯靠注意力机制，具备强并行性，成为此后几乎所有大模型的底层架构',
-        links: [{label: 'arXiv:1706.03762', href: 'https://arxiv.org/abs/1706.03762'}],
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/1706.03762'},
+          {label: 'NeurIPS 2017 论文页', href: 'https://papers.nips.cc/paper/7181-attention-is-all-you-need'},
+        ],
       },
       {
         date: '2018.06',
         title: 'OpenAI 发布 **GPT-1**',
         description: '确立「生成式预训练 + 下游微调」范式，验证无监督预训练的有效性',
+        links: [
+          {label: 'Tech Report', href: 'https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf'},
+          {label: 'OpenAI 研究页', href: 'https://openai.com/research/language-unsupervised'},
+        ],
       },
       {
         date: '2018.10',
         title: 'Google 发布 **BERT**',
         description: '双向预训练，刷新一众理解类任务榜单，引爆 NLP 的「预训练革命」',
-        links: [{label: 'arXiv:1810.04805', href: 'https://arxiv.org/abs/1810.04805'}],
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/1810.04805'},
+          {label: 'GitHub', href: 'https://github.com/google-research/bert'},
+        ],
       },
       {
         date: '2019.02',
         title: 'OpenAI 发布 **GPT-2**（15 亿参数）',
         description:
           '因「可能被滥用」而分阶段开源，首次让公众感受到生成文本的逼真度，引发安全讨论',
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/1905.01146'},
+          {label: '发布说明', href: 'https://openai.com/research/better-language-models'},
+          {label: 'GitHub', href: 'https://github.com/openai/gpt-2'},
+        ],
       },
       {
         date: '2019',
         title: 'T5、RoBERTa、XLNet 等相继问世',
         description: '各类预训练变体百花齐放，推动规模与方法快速迭代',
+        links: [
+          {label: 'T5 (arXiv:1910.10683)', href: 'https://arxiv.org/abs/1910.10683'},
+          {label: 'RoBERTa (arXiv:1907.11692)', href: 'https://arxiv.org/abs/1907.11692'},
+          {label: 'XLNet (arXiv:1906.08232)', href: 'https://arxiv.org/abs/1906.08232'},
+        ],
       },
     ],
   },
@@ -90,35 +135,58 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: 'OpenAI 提出**缩放定律**（Scaling Laws，Kaplan 等）',
         description:
           '给出模型性能随规模、数据、算力变化的经验规律，为「做大」提供理论依据',
-        links: [{label: 'arXiv:2001.08361', href: 'https://arxiv.org/abs/2001.08361'}],
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2001.08361'},
+          {label: 'OpenAI 研究页', href: 'https://openai.com/research/scaling-laws-for-neural-language-models'},
+        ],
       },
       {
         date: '2020.05',
         title: 'OpenAI 发布 **GPT-3**（1750 亿参数）',
         description:
           '「少样本/上下文学习」能力震撼业界，无需微调即可完成多任务，开启大模型时代',
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2005.14165'},
+          {label: '发布说明', href: 'https://openai.com/blog/openai-api/'},
+        ],
       },
       {
         date: '2021',
         title: 'OpenAI Codex 发布，驱动 GitHub Copilot',
         description: '把代码生成推向实用，开启「AI 编程助手」赛道',
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2107.03374'},
+          {label: 'GitHub Copilot', href: 'https://github.com/features/copilot'},
+          {label: 'OpenAI 博客', href: 'https://openai.com/blog/openai-codex/'},
+        ],
       },
       {
         date: '2022.01',
         title: 'OpenAI 发表 **InstructGPT**，引入 **RLHF**',
         description: '用人类反馈强化学习对齐模型，让模型「听话」且更有用，是 ChatGPT 的直接前身',
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2203.02155'},
+          {label: 'OpenAI 对齐研究', href: 'https://openai.com/research/learning-from-human-preferences'},
+        ],
       },
       {
         date: '2022.03',
         title: 'DeepMind 发表 **Chinchilla**',
         description:
           '提出「算力最优」训练观点：多数大模型其实训练不足，数据量应与参数同步扩张',
-        links: [{label: 'arXiv:2203.15556', href: 'https://arxiv.org/abs/2203.15556'}],
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2203.15556'},
+          {label: 'DeepMind 博客', href: 'https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/'},
+        ],
       },
       {
         date: '2022.04',
         title: 'Google 发布 **PaLM**（5400 亿参数）',
         description: '展示规模化下的强推理与思维链（Chain-of-Thought）能力',
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2204.02311'},
+          {label: 'Google Research', href: 'https://research.google/blog/announcing-palm-our-largest-language-model-to-date/'},
+        ],
       },
     ],
   },
@@ -143,22 +211,38 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: 'OpenAI 发布 **ChatGPT**',
         description:
           '史上用户增长最快的消费级应用之一，把 LLM 带入主流视野，引发全球 AI 热潮',
+        links: [
+          {label: '发布说明', href: 'https://openai.com/blog/chatgpt/'},
+          {label: 'ChatGPT 产品页', href: 'https://chatgpt.com/'},
+        ],
       },
       {
         date: '2023.02',
         title: 'Meta 发布 **LLaMA**（权重外泄）',
         description: '高质量开源基座点燃开源社区，催生 Alpaca、Vicuna 等一大批衍生模型',
-        links: [{label: 'arXiv:2302.13971', href: 'https://arxiv.org/abs/2302.13971'}],
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2302.13971'},
+          {label: 'Hugging Face', href: 'https://huggingface.co/meta-llama'},
+        ],
       },
       {
         date: '2023.02',
         title: '微软推出 New Bing（集成 GPT）',
         description: '搜索引擎与对话式 AI 结合的首次大规模尝试',
+        links: [
+          {label: '微软官方博客', href: 'https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/'},
+          {label: 'Bing 产品页', href: 'https://www.bing.com/chat'},
+        ],
       },
       {
         date: '2023.03',
         title: 'OpenAI 发布 **GPT-4**；Anthropic 推出 **Claude**；Google 推出 Bard',
         description: '多模态（图文）能力登场，头部厂商正式进入竞争',
+        links: [
+          {label: 'GPT-4 发布说明', href: 'https://openai.com/research/gpt-4'},
+          {label: 'Claude 发布说明', href: 'https://www.anthropic.com/news/introducing-claude'},
+          {label: 'Google Bard 博客', href: 'https://blog.google/technology/ai/bard-google-ai-search-updates/'},
+        ],
       },
       {
         date: '2023.03.14',
@@ -181,12 +265,21 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2023.07',
         title: 'Meta 发布 **Llama 2**（可商用开源）',
         description: '开源可商用许可，极大推动企业级开源部署',
+        links: [
+          {label: '官方博客', href: 'https://ai.meta.com/blog/llama-2/'},
+          {label: 'Llama 2 下载页', href: 'https://ai.meta.com/llama/'},
+          {label: 'Hugging Face', href: 'https://huggingface.co/meta-llama'},
+        ],
       },
       {
         date: '2023.09',
         title: 'Mistral 发布 **Mistral 7B**',
         description: '小而强的开源模型，后续 Mixtral 把 MoE（专家混合）带向开源主流',
-        links: [{label: 'arXiv:2310.06825', href: 'https://arxiv.org/abs/2310.06825'}],
+        links: [
+          {label: 'Tech Report', href: 'https://arxiv.org/abs/2310.06825'},
+          {label: 'Hugging Face', href: 'https://huggingface.co/mistralai/Mistral-7B-v0.1'},
+          {label: 'GitHub', href: 'https://github.com/mistralai/mistral-src'},
+        ],
       },
       {
         date: '2023.10',
@@ -209,6 +302,10 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2023.12',
         title: 'Google 发布 **Gemini**',
         description: '原生多模态设计，正式对标 GPT-4',
+        links: [
+          {label: '发布说明', href: 'https://blog.google/technology/ai/google-gemini-ai/'},
+          {label: 'Gemini Tech Report (PDF)', href: 'https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf'},
+        ],
       },
     ],
   },
@@ -250,6 +347,10 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2024.03',
         title: 'Anthropic 发布 **Claude 3**（Opus/Sonnet/Haiku）',
         description: '分层产品策略，在多项基准上与 GPT-4 正面竞争',
+        links: [
+          {label: '发布说明', href: 'https://www.anthropic.com/news/claude-3-family'},
+          {label: 'Claude 3 模型卡', href: 'https://www.anthropic.com/claude-3-model-card'},
+        ],
       },
       {
         date: '2024.04.17',
@@ -265,6 +366,10 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2024.05',
         title: 'OpenAI 发布 **GPT-4o**（omni）',
         description: '原生多模态、低延迟实时语音交互，体验接近自然对话',
+        links: [
+          {label: '发布说明', href: 'https://openai.com/index/hello-gpt-4o/'},
+          {label: 'System Card', href: 'https://openai.com/index/gpt-4o-system-card/'},
+        ],
       },
       {
         date: '2024.05',
@@ -280,6 +385,11 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2024.07',
         title: 'Meta 发布 **Llama 3.1**（含 405B）',
         description: '当时最强开源模型之一，缩小开源与闭源的差距',
+        links: [
+          {label: '官方博客', href: 'https://ai.meta.com/blog/meta-llama-3-1/'},
+          {label: 'Hugging Face', href: 'https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-Instruct'},
+          {label: 'GitHub', href: 'https://github.com/meta-llama/llama-models'},
+        ],
       },
       {
         date: '2024.08',
@@ -296,6 +406,10 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: 'OpenAI 发布 **o1**（推理模型）',
         description:
           '引入「推理时计算」（inference-time compute），通过强化学习训练长链思考，开辟推理模型新范式',
+        links: [
+          {label: '发布说明', href: 'https://openai.com/index/learning-to-reason-with-llms/'},
+          {label: 'o1 System Card', href: 'https://openai.com/index/openai-o1-system-card/'},
+        ],
       },
       {
         date: '2024.09.05',
@@ -360,11 +474,19 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2025.02',
         title: 'OpenAI 发布 **GPT-4.5**（代号 Orion）',
         description: '主打更自然的对话，被官方定位为非「前沿」模型',
+        links: [
+          {label: '发布说明', href: 'https://openai.com/index/introducing-gpt-4-5/'},
+          {label: 'System Card', href: 'https://openai.com/index/gpt-4-5-system-card/'},
+        ],
       },
       {
         date: '2025.03',
         title: 'Google 发布 **Gemini 2.5 Pro**',
         description: '百万级上下文窗口，登顶多项榜单',
+        links: [
+          {label: '发布说明', href: 'https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/'},
+          {label: 'Gemini 文档', href: 'https://ai.google.dev/gemini-api/docs/models'},
+        ],
       },
       {
         date: '2025.06',
@@ -391,6 +513,11 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: 'OpenAI 发布 **GPT-5**',
         description:
           '统一多模态模型，内置实时路由（自动在标准/思考/Pro 模式间切换），40 万 token 上下文，免费用户亦可使用核心能力',
+        links: [
+          {label: '发布说明', href: 'https://openai.com/index/introducing-gpt-5/'},
+          {label: 'System Card', href: 'https://openai.com/index/gpt-5-system-card/'},
+          {label: 'API 文档', href: 'https://platform.openai.com/docs/models/gpt-5'},
+        ],
       },
       {
         date: '2025.09.30',
@@ -439,12 +566,23 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2025',
         title: '推理模型在国际数学奥林匹克（IMO）等竞赛取得金牌级表现',
         description: 'DeepMind、OpenAI 的推理模型展示出接近顶尖人类的数学能力',
+        links: [
+          {label: 'Google DeepMind (IMO 2025)', href: 'https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-level-at-the-international-mathematical-olympiad/'},
+          {label: 'OpenAI (IMO 2025)', href: 'https://openai.com/index/achieving-gold-medal-level-performance-at-the-international-mathematical-olympiad/'},
+        ],
       },
       {
         date: '2025 下半年',
         title: 'Gemini 3、Grok 4.1、Claude Opus 4.5、GPT-5.1/5.2 等密集发布',
         description:
           '「智能体（Agentic AI）」成为年度核心战场，模型从助手走向能自主执行多步任务的工具',
+        links: [
+          {label: 'Gemini 3 发布说明', href: 'https://blog.google/technology/google-deepmind/gemini-3/'},
+          {label: 'Claude Opus 4.5', href: 'https://www.anthropic.com/news/claude-opus-4-5'},
+          {label: 'GPT-5.1 发布说明', href: 'https://openai.com/index/gpt-5-1/'},
+          {label: 'GPT-5.2 发布说明', href: 'https://openai.com/index/introducing-gpt-5-2/'},
+          {label: 'xAI Grok 4.1', href: 'https://x.ai/news/grok-4-1'},
+        ],
       },
     ],
   },
@@ -458,6 +596,10 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2026.02.05',
         title: 'Anthropic 发布 **Claude Opus 4.6**；OpenAI 同日发布 **GPT-5.3-Codex**',
         description: '编码与智能体能力成为竞争焦点，两家同日交锋',
+        links: [
+          {label: 'Claude Opus 4.6 发布说明', href: 'https://www.anthropic.com/news/claude-opus-4-6'},
+          {label: 'GPT-5.3-Codex 发布说明', href: 'https://openai.com/index/introducing-gpt-5-3-codex/'},
+        ],
       },
       {
         date: '2026.02.11',
@@ -475,11 +617,19 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         title: 'Anthropic 发布 **Sonnet 4.6**；Google 发布 **Gemini 3.1 Pro**（预览）',
         description:
           '14 天内三家四款前沿模型集中亮相，榜单首次「分车道」，不再有全能冠军',
+        links: [
+          {label: 'Claude Sonnet 4.6 发布说明', href: 'https://www.anthropic.com/news/claude-sonnet-4-6'},
+          {label: 'Gemini 3.1 Pro 预览', href: 'https://blog.google/technology/google-deepmind/gemini-3-1-pro/'},
+        ],
       },
       {
         date: '2026.03',
         title: 'OpenAI 发布 **GPT-5.4**',
         description: '持续围绕工具调用可靠性、长上下文、智能体稳定性迭代',
+        links: [
+          {label: '发布说明', href: 'https://openai.com/index/introducing-gpt-5-4/'},
+          {label: 'System Card', href: 'https://openai.com/index/gpt-5-4-system-card/'},
+        ],
       },
       {
         date: '2026.04.23',
@@ -487,6 +637,11 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
           'OpenAI 发布 **GPT-5.5**；Anthropic 发布 **Claude Opus 4.7**；Google 推进 **Gemini 3.1 Pro**',
         description:
           '三家旗舰数周内集中发布：GPT 强于智能体/研究，Claude 领先软件工程，Gemini 主打性价比与多模态',
+        links: [
+          {label: 'GPT-5.5 发布说明', href: 'https://openai.com/index/introducing-gpt-5-5/'},
+          {label: 'Claude Opus 4.7 发布说明', href: 'https://www.anthropic.com/news/claude-opus-4-7'},
+          {label: 'Gemini 3.1 Pro', href: 'https://blog.google/technology/google-deepmind/gemini-3-1-pro/'},
+        ],
       },
       {
         date: '2026.04.24',
@@ -505,11 +660,20 @@ export const llmHistoryTimelineSections: TimelineSectionData[] = [
         date: '2026.05.19',
         title: 'Google I/O 发布 **Gemini 3.5 Flash**，并预告 **Gemini 3.5 Pro**（6 月 GA）',
         description: '新一代家族登场，Pro 目标 200 万 token 上下文与 Deep Think 推理',
+        links: [
+          {label: 'Google I/O 2026 博客', href: 'https://blog.google/technology/google-io-2026/'},
+          {label: 'Gemini 3.5 Flash', href: 'https://blog.google/technology/google-deepmind/gemini-3-5-flash/'},
+          {label: 'Gemini API 文档', href: 'https://ai.google.dev/gemini-api/docs/models'},
+        ],
       },
       {
         date: '2026.05.28',
         title: 'Anthropic 发布 **Claude Opus 4.8**',
         description: '截至本文更新时的最新前沿模型之一',
+        links: [
+          {label: '发布说明', href: 'https://www.anthropic.com/news/claude-opus-4-8'},
+          {label: 'Claude 文档', href: 'https://docs.anthropic.com/en/docs/about-claude/models/overview'},
+        ],
       },
     ],
   },

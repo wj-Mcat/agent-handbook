@@ -1,0 +1,45 @@
+.toast {
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  z-index: 1004;
+  max-width: min(92vw, 360px);
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-surface-color, #fff);
+  border: 1px solid var(--ifm-color-emphasis-200, #e3e3e3);
+  border-left: 4px solid var(--ifm-color-primary, #3578e5);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+  animation: giscusSyncNoticeIn 0.28s ease-out;
+}
+
+.title {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--ifm-color-primary);
+}
+
+.body {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@keyframes giscusSyncNoticeIn {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-theme='dark'] .toast {
+  border-color: var(--ifm-color-emphasis-300);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}

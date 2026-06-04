@@ -2,6 +2,7 @@ import React from 'react';
 import Giscus from "@giscus/react";
 import { useColorMode } from '@docusaurus/theme-common';
 import GiscusHighlights from "@site/src/components/GiscusHighlights";
+import GiscusSyncNotice from "@site/src/components/GiscusSyncNotice";
 
 export default function GiscusComponent() {
   const { colorMode } = useColorMode();
@@ -27,6 +28,8 @@ export default function GiscusComponent() {
       />
       {/* 读取构建期采集的评论引用，将其在正文中高亮渲染 */}
       <GiscusHighlights />
+      {/* 检测到新评论/回复后提示正文高亮同步时间 */}
+      <GiscusSyncNotice />
     </>
   );
 }

@@ -18,6 +18,23 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Tech Report 横向对比宽表 */
+.tech-report-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tech-report-table-wrapper table {
+  font-size: 0.85rem;
+  min-width: max-content;
+}
+
+.tech-report-table-wrapper th,
+.tech-report-table-wrapper td {
+  white-space: nowrap;
+}
+
 [data-theme='dark'] {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;

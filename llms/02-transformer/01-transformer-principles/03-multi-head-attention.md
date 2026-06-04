@@ -32,28 +32,9 @@
 
 #### hidden_state = up(down(hidden_size))
 
-### Ring Attention
+### 稀疏与高效注意力（专章）
 
-![Ring Attention](./imgs/8d988c38-056d-40b2-dd98-7ae13b43a13b.png)
+Ring Attention、NSA、滑动窗口、DeepSeek DSA、线性注意力等 **长序列与稀疏注意力** 内容已迁至专章，避免与原理篇重复维护：
 
-#### 核心原理
-
-#### 在计算 Attention 时，假如说 32K 长度的 Attention，此时主要的 Attention 是在于 K 的长度（兼容训练和推理），当平均分为 4 份之后，通过 ring 四次，进而得到完整的 attention 内容
-
-#### 性能指标
-
-![性能指标](./imgs/c2631eae-8cfc-4076-eefc-3012236a6d57.png)
-
-#### 可以发现通过 sequence parallel 可以很大程度上减少
-
-### Native Sparse Attention
-
-#### 背景
-
-#### 此前的方法都是属于
-
-### Sparse Attention 相关方法
-
-#### 参考文章
-
-[https://x.com/rasbt/status/2055637086380650538](https://x.com/rasbt/status/2055637086380650538)
+- [2.3.6 稀疏注意力总览](../03-transformer-improvements/06-sparse-attention/01-overview)
+- GQA / MLA 公式与图示见 [2.3.4 注意力变体](../03-transformer-improvements/04-attention-variants)

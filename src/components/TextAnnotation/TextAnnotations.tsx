@@ -56,6 +56,27 @@ async function copyText(text: string): Promise<boolean> {
   }
 }
 
+/** 从当前选区读取划词草稿；选区无效或不在正文容器内时返回 null */
+function readDraftFromSelection(root: HTMLElement): {draft: Draft; range: Range} | null {
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed || selection.rangeCount === 0) {
+    return null;
+  }
+  const range = selection.getRangeAt(0);
+  if (!root.contains(range.commonAncestorContainer)) {
+    return null;
+  }
+  const quote = selection.toString();
+  if (!quote.trim()) {
+    return null;
+  }
+  const cloned = range.cloneRange();
+  return {
+    draft: {quote, rect: getPopoverRect(cloned)},
+    range: cloned,
+  };
+}
+
 export default function TextAnnotations({config: configOverride}: Props): JSX.Element {
   const config = useMemo<AnnotationConfig>(
     () => ({...defaultConfig, ...configOverride}),
@@ -66,6 +87,7 @@ export default function TextAnnotations({config: configOverride}: Props): JSX.El
   const popoverRef = useRef<HTMLDivElement | null>(null);
   /** 划词时的 DOM Range 副本，用于滚动时重新对齐气泡 */
   const selectionRangeRef = useRef<Range | null>(null);
+  const selectionSyncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
@@ -74,38 +96,57 @@ export default function TextAnnotations({config: configOverride}: Props): JSX.El
     setDraft(null);
   }, []);
 
+  const applySelection = useCallback(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return;
+    }
+    const result = readDraftFromSelection(root);
+    if (result) {
+      selectionRangeRef.current = result.range;
+      setDraft(result.draft);
+    }
+  }, []);
+
+  /** 移动端选区往往在 touchend / selectionchange 之后才稳定，做短延迟合并 */
+  const scheduleSelectionSync = useCallback(() => {
+    if (selectionSyncTimerRef.current != null) {
+      clearTimeout(selectionSyncTimerRef.current);
+    }
+    selectionSyncTimerRef.current = setTimeout(() => {
+      selectionSyncTimerRef.current = null;
+      applySelection();
+    }, 120);
+  }, [applySelection]);
+
   useEffect(() => {
     rootRef.current = document.querySelector<HTMLElement>(config.contentSelector);
   }, [config.contentSelector]);
 
-  // 划词：选区结束后在选区上方浮现「评论」气泡
+  // 划词：桌面 mouseup + 移动 touchend + selectionchange（手机主要依赖后两者）
   useEffect(() => {
     const handleMouseUp = () => {
-      const root = rootRef.current;
-      if (!root) {
-        return;
-      }
-      const selection = window.getSelection();
-      if (!selection || selection.isCollapsed || selection.rangeCount === 0) {
-        return;
-      }
-      const range = selection.getRangeAt(0);
-      if (!root.contains(range.commonAncestorContainer)) {
-        return;
-      }
-      const quote = selection.toString();
-      if (!quote.trim()) {
-        return;
-      }
-      selectionRangeRef.current = range.cloneRange();
-      setDraft({
-        quote,
-        rect: getPopoverRect(selectionRangeRef.current),
-      });
+      applySelection();
     };
+    const handleTouchEnd = () => {
+      scheduleSelectionSync();
+    };
+    const handleSelectionChange = () => {
+      scheduleSelectionSync();
+    };
+
     document.addEventListener('mouseup', handleMouseUp);
-    return () => document.removeEventListener('mouseup', handleMouseUp);
-  }, []);
+    document.addEventListener('touchend', handleTouchEnd, {passive: true});
+    document.addEventListener('selectionchange', handleSelectionChange);
+    return () => {
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('selectionchange', handleSelectionChange);
+      if (selectionSyncTimerRef.current != null) {
+        clearTimeout(selectionSyncTimerRef.current);
+      }
+    };
+  }, [applySelection, scheduleSelectionSync]);
 
   // 滚动 / 缩放时按当前选区视口坐标重算气泡位置（fixed 不会随文档滚动）
   useEffect(() => {
@@ -136,16 +177,23 @@ export default function TextAnnotations({config: configOverride}: Props): JSX.El
     };
   }, [draft?.quote, clearDraft]);
 
-  // 点击气泡以外的区域关闭气泡
+  // 点击气泡以外区域关闭；若正文内仍有有效选区则保留（避免手机抬手时误关）
   useEffect(() => {
-    const handlePointerDown = (event: MouseEvent) => {
-      if (popoverRef.current && popoverRef.current.contains(event.target as Node)) {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (popoverRef.current?.contains(event.target as Node)) {
         return;
+      }
+      const root = rootRef.current;
+      if (root?.contains(event.target as Node)) {
+        const stillSelected = readDraftFromSelection(root);
+        if (stillSelected) {
+          return;
+        }
       }
       clearDraft();
     };
-    document.addEventListener('mousedown', handlePointerDown);
-    return () => document.removeEventListener('mousedown', handlePointerDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [clearDraft]);
 
   const showToast = useCallback((message: string) => {
@@ -170,8 +218,8 @@ export default function TextAnnotations({config: configOverride}: Props): JSX.El
     if (copied) {
       showToast(
         iframe
-          ? '✅ 引用已复制，请在下方评论框粘贴（⌘/Ctrl+V）并补充你的评论后发表'
-          : '✅ 引用已复制，请到评论区粘贴（⌘/Ctrl+V）并补充你的评论后发表',
+          ? '✅ 引用已复制，请在下方评论框粘贴并补充你的评论后发表'
+          : '✅ 引用已复制，请到评论区粘贴并补充你的评论后发表',
       );
     } else {
       showToast('⚠ 自动复制失败，请手动复制选中的文字到评论框');
@@ -189,6 +237,7 @@ export default function TextAnnotations({config: configOverride}: Props): JSX.El
             type="button"
             className={styles.selectionButton}
             onMouseDown={(e) => e.preventDefault()}
+            onTouchStart={(e) => e.preventDefault()}
             onClick={handleComment}>
             💬 引用并评论
           </button>

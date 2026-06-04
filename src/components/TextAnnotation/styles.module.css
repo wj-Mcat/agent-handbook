@@ -11,14 +11,17 @@
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  /* 避免触摸被当作滚动，提升移动端点击命中率 */
+  touch-action: manipulation;
 }
 
 .selectionButton {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 5px 12px;
-  font-size: 13px;
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 14px;
   line-height: 1.4;
   color: var(--ifm-color-primary);
   background: transparent;

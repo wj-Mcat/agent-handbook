@@ -1,27 +1,43 @@
 # 2.1.4 位置编码（正弦位置编码、可学习位置编码）
 
-## 位置编码
+## 要解决的问题
 
-### 相对位置编码
+Self-Attention 对 token **置换不变**（仅依赖两两关系），无法区分顺序。位置编码（Positional Encoding）向表示中注入 **位置信息**。
 
-假设：LLM 子回归的解码器当中，当前解码的 token 跟附近的 token 相关性概率最大，
+## 正弦位置编码（原始 Transformer）
 
-#### 为什么要引入相对位置编码
+$$
+PE_{(pos, 2i)} = \sin(pos / 10000^{2i/d}), \quad
+PE_{(pos, 2i+1)} = \cos(pos / 10000^{2i/d})
+$$
 
-假设：LLM 子回归的解码器当中，当前解码的 token 跟附近的 token 相关性概率最大，
+- 不同维度不同波长，可外推一定长度
+- 与词嵌入 **相加** 后进入第一层
 
-#### 相对位置编码很慢
+## 可学习位置编码
 
-#### 在 transformer layer 要单独添加相对位置编码
+为每个位置 $pos \in [0, L_{\max})$ 学习向量 $\mathbf{p}_{pos}$。灵活但 **超过 $L_{\max}$ 需外推或插值**。
 
-#### 在解码中的每个 step 都要更新，cache-kv 也要随之更新
+## 现代主流：RoPE（相对位置）
 
-### sinuasoidal 位置编码
+不在输入相加，而在 **Q、K 上旋转**，编码相对距离；长上下文外推见 [2.3.1 位置编码改进](../03-transformer-improvements/01-positional-encoding-improvements)（RoPE、ALiBi、YaRN）。
 
-![sinuasoidal 位置编码](./imgs/8d8e343d-804b-4ec9-da5c-4038e5eb15e5.png)
+| 方案 | 类型 | LLM 采用度 |
+| --- | --- | --- |
+| 正弦 | 绝对 | 早期 Transformer |
+| 可学习绝对 | 绝对 | BERT 等 |
+| **RoPE** | 相对 | Llama、Qwen、DeepSeek |
+| **ALiBi** | 线性偏置 | 部分长上下文模型 |
 
-#### 基本介绍
+## 与嵌入的关系
 
-#### 整体非严格的单调，而是正当下降
+$$
+\mathbf{x}_t = \mathbf{E}_{token(t)} + \mathbf{PE}_t \quad \text{（绝对方案）}
+$$
 
-#### 参考文章：[https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247522799&idx=1&sn=97cc77f6be765bb6124e0f7c5c4e533e&chksm=96ea466fa19dcf79e4cdeba36f41b17917a724cadfbe6d81f256526cef5c79199ac2708b7988&token=1557779959&lang=zh_CN&scene=21#wechat_redirect](https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&mid=2247522799&idx=1&sn=97cc77f6be765bb6124e0f7c5c4e533e&chksm=96ea466fa19dcf79e4cdeba36f41b17917a724cadfbe6d81f256526cef5c79199ac2708b7988&token=1557779959&lang=zh_CN&scene=21#wechat_redirect)
+Decoder-only LM 通常 **因果 mask + RoPE** 组合。
+
+## 参考链接
+
+- [2.3.1 RoPE / ALiBi / NoPE](../03-transformer-improvements/01-positional-encoding-improvements)
+- [3.2 分词](../../03-pre-training/02-tokenization/)（token 与位置一一对应）

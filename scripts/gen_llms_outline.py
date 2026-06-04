@@ -69,7 +69,17 @@ PARTS = [
             ("normalization-improvements", "归一化改进：RMSNorm、DeepNorm"),
             ("activation-improvements", "激活函数改进：SwiGLU、GeGLU"),
             ("attention-variants", "注意力变体：MQA、GQA、MLA"),
-            ("sparse-linear-attention", "稀疏注意力、线性注意力"),
+            ("flash-attention", "Flash Attention 与 IO 优化"),
+            ("sparse-attention", "稀疏注意力", [
+                ("overview", "稀疏注意力总览"),
+                ("ring-attention", "Ring Attention 与序列并行"),
+                ("native-sparse-attention", "Native Sparse Attention（NSA）"),
+                ("deepseek-sparse-route", "DeepSeek 稀疏路线（MLA / DSA / CSA+HCA）"),
+                ("linear-attention", "线性注意力"),
+                ("sliding-window-attention", "滑动窗口注意力（SWA）"),
+                ("local-global-sparse", "局部-全局稀疏注意力（Longformer / BigBird）"),
+                ("kv-compression-boundary", "KV 压缩与稀疏边界（MQA / GQA / MLA）"),
+            ]),
             ("mamba-ssm", "Mamba 与状态空间模型（SSM）作为替代方案"),
         ]),
     ]),
@@ -330,11 +340,21 @@ def main() -> None:
             # 二级标题：部.章
             write_category(ch_path, f"{part_idx}.{ch_idx} {ch_title}")
             created_dirs += 1
-            for sec_idx, (sec_slug, sec_title) in enumerate(sections, 1):
-                file_path = os.path.join(ch_path, f"{sec_idx:02d}-{sec_slug}.md")
-                # 三级标题：部.章.节
-                write_doc(file_path, f"{part_idx}.{ch_idx}.{sec_idx} {sec_title}")
-                created_files += 1
+            for sec_idx, section in enumerate(sections, 1):
+                if len(section) == 3:
+                    sec_slug, sec_title, subsections = section
+                    sub_path = os.path.join(ch_path, f"{sec_idx:02d}-{sec_slug}")
+                    write_category(sub_path, f"{part_idx}.{ch_idx}.{sec_idx} {sec_title}")
+                    created_dirs += 1
+                    for sub_idx, (sub_slug, sub_title) in enumerate(subsections, 1):
+                        file_path = os.path.join(sub_path, f"{sub_idx:02d}-{sub_slug}.md")
+                        write_doc(file_path, f"{part_idx}.{ch_idx}.{sec_idx}.{sub_idx} {sub_title}")
+                        created_files += 1
+                else:
+                    sec_slug, sec_title = section
+                    file_path = os.path.join(ch_path, f"{sec_idx:02d}-{sec_slug}.md")
+                    write_doc(file_path, f"{part_idx}.{ch_idx}.{sec_idx} {sec_title}")
+                    created_files += 1
 
     # 附录：排在所有部分之后
     ap_dir, ap_label, ap_items = APPENDIX

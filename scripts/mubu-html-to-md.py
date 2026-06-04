@@ -24,6 +24,7 @@ TRANSFORMER = REPO_ROOT / "llms" / "02-transformer"
 T01 = TRANSFORMER / "01-transformer-principles"
 T02 = TRANSFORMER / "02-transformer-details"
 T03 = TRANSFORMER / "03-transformer-improvements"
+T03_SPARSE = T03 / "06-sparse-attention"
 
 # 顶层节点标题 -> 目标 md（相对 FOUNDATIONS 或绝对路径）
 TOP_ROUTES: dict[str, Path] = {
@@ -105,6 +106,18 @@ ATTENTION_SPARSE_KEYWORDS = (
     "ring attention",
     "native sparse",
     "sparse attention",
+)
+SWA_KEYWORDS = (
+    "sliding window",
+    "滑动窗口",
+    "attention sink",
+    "attention-sink",
+)
+LOCAL_GLOBAL_KEYWORDS = (
+    "longformer",
+    "bigbird",
+    "local global",
+    "global token",
 )
 
 PE_IMPROVE_TITLES = {"Rotary Embedding", "NTK rope", "ReRope"}
@@ -527,6 +540,33 @@ def is_sparse_attention_topic(title: str) -> bool:
     return any(k in t for k in ATTENTION_SPARSE_KEYWORDS)
 
 
+def is_sliding_window_topic(title: str) -> bool:
+    t = normalize_title(title).lower()
+    return any(k in t for k in SWA_KEYWORDS)
+
+
+def is_local_global_topic(title: str) -> bool:
+    t = normalize_title(title).lower()
+    return any(k in t for k in LOCAL_GLOBAL_KEYWORDS)
+
+
+def sparse_route_path(title: str) -> Path:
+    t = normalize_title(title).lower()
+    if "ring" in t:
+        return T03_SPARSE / "02-ring-attention.md"
+    if "native sparse" in t or t == "nsa":
+        return T03_SPARSE / "03-native-sparse-attention.md"
+    if "deepseek" in t or "dsa" in t or "mla" in t and "sparse" in t:
+        return T03_SPARSE / "04-deepseek-sparse-route.md"
+    if "linear" in t or "performer" in t or "lightning" in t:
+        return T03_SPARSE / "05-linear-attention.md"
+    if is_sliding_window_topic(title):
+        return T03_SPARSE / "06-sliding-window-attention.md"
+    if is_local_global_topic(title):
+        return T03_SPARSE / "07-local-global-sparse.md"
+    return T03_SPARSE / "01-overview.md"
+
+
 def split_position_info(node: TreeNode) -> dict[Path, list[TreeNode]]:
     basic: list[TreeNode] = []
     improve: list[TreeNode] = []
@@ -558,7 +598,7 @@ def split_performance(node: TreeNode) -> dict[Path, list[TreeNode]]:
             flash_attn.append(child)
     buckets: dict[Path, list[TreeNode]] = {}
     if flash_attn:
-        buckets[T03 / "05-sparse-linear-attention.md"] = [
+        buckets[T03 / "05-flash-attention.md"] = [
             TreeNode(title="Flash Attention 与 IO 优化", children=flash_attn),
         ]
     if decode:
@@ -570,13 +610,16 @@ def split_performance(node: TreeNode) -> dict[Path, list[TreeNode]]:
 
 def split_attention(node: TreeNode) -> dict[Path, list[TreeNode]]:
     variants: list[TreeNode] = []
-    sparse: list[TreeNode] = []
+    sparse_by_path: dict[Path, list[TreeNode]] = {}
     core: list[TreeNode] = []
     for child in node.children:
         if is_attention_variant(child.title):
             variants.append(child)
-        elif is_sparse_attention_topic(child.title):
-            sparse.append(child)
+        elif is_sparse_attention_topic(child.title) or is_sliding_window_topic(
+            child.title
+        ) or is_local_global_topic(child.title):
+            path = sparse_route_path(child.title)
+            sparse_by_path.setdefault(path, []).append(child)
         else:
             core.append(child)
     buckets: dict[Path, list[TreeNode]] = {
@@ -586,9 +629,9 @@ def split_attention(node: TreeNode) -> dict[Path, list[TreeNode]]:
         buckets[T03 / "04-attention-variants.md"] = [
             TreeNode(title="注意力变体（GQA / MLA）", children=variants),
         ]
-    if sparse:
-        buckets.setdefault(T03 / "05-sparse-linear-attention.md", []).append(
-            TreeNode(title="稀疏与长序列 Attention", children=sparse),
+    for path, items in sparse_by_path.items():
+        buckets.setdefault(path, []).append(
+            TreeNode(title="稀疏与长序列 Attention", children=items),
         )
     return buckets
 
@@ -618,7 +661,7 @@ def collect_for_route_transformer(top_nodes: list[TreeNode]) -> dict[Path, list[
 
         if title == "Attention":
             for path, nodes in split_attention(node).items():
-                if path in buckets and path == T03 / "05-sparse-linear-attention.md":
+                if path in buckets and str(path).startswith(str(T03_SPARSE)):
                     buckets[path].extend(nodes)
                 else:
                     buckets.setdefault(path, []).extend(nodes)
@@ -658,10 +701,14 @@ def collect_for_route_transformer(top_nodes: list[TreeNode]) -> dict[Path, list[
 
 def transformer_file_extra(md_path: Path, body: str) -> str:
     extra = ""
-    if md_path == T03 / "05-sparse-linear-attention.md":
+    if md_path == T03 / "05-flash-attention.md":
         extra = (
             "> 本章幕布笔记侧重 Flash Attention / Flash Decoding 等 IO 与注意力加速；"
-            "完整推理栈见 `llms/05-inference-deployment/`。\n\n"
+            "稀疏与长序列路线见 `06-sparse-attention/`；完整推理栈见 `llms/05-inference-deployment/`。\n\n"
+        )
+    if md_path == T03_SPARSE / "01-overview.md":
+        extra = (
+            "> Flash Attention 见 `05-flash-attention`；完整推理栈见 `llms/05-inference-deployment/`。\n\n"
         )
     if md_path == T02 / "02-decoder-causal-mask.md" and "speculative" in body.lower():
         extra = (

@@ -10,5 +10,5 @@ slug: use-agent-to-generate-data
 
 ## 2024 阿里论文：Self-play with Execution Feedback
 
-详细请看：[Paper Reading：Self-play with Execution Feedback：Improving Instruction-following Capabilities of Large Language Models](/paper-reading/2024/07/self-play-with-execution-feedback)
+详细请看：[Paper Reading：Self-play with Execution Feedback：Improving Instruction-following Capabilities of Large Language Models](/paper-reading/agentic/self-play-with-execution-feedback)
 

@@ -14,7 +14,7 @@
 
 ## 技术栈
 
-- Node.js：要求 >= 18.0
+- Node.js：要求 >= 20.18.1
 - Docusaurus：3.4.0
 - React：18
 - TypeScript：~5.2.2
@@ -221,7 +221,7 @@ print("hello")
 GitHub Actions 配置位于 `.github/workflows/deploy.yaml`：
 
 - push 到 `master` 分支触发。
-- 使用 Node.js 18。
+- 使用 Node.js 20。
 - 安装依赖后运行站点构建。
 - 构建产物 `build/` 部署到 GitHub Pages。
 

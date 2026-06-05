@@ -81,5 +81,5 @@ flowchart LR
 
 - [4.3.1 RLHF](../03-rlhf/01-rlhf-pipeline)
 - [4.4.2 IPO、KTO、ORPO](./02-ipo-kto-orpo-simpo)
-- [4.4.4 方法对比](./04-methods-comparison)
+- [4.4.4 On-Policy vs Off-Policy](./03a-on-policy-vs-off-policy) · [4.4.5 方法对比](./04-methods-comparison)
 - [4.3.4 KL 与 $\beta$](../03-rlhf/04-kl-penalty-stability)

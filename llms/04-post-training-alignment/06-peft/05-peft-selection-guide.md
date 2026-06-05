@@ -85,5 +85,5 @@ flowchart TD
 - [4.6.2 Prefix / Prompt Tuning](./02-prefix-prompt-p-tuning)
 - [4.6.3 LoRA 与 QLoRA](./03-lora-qlora)
 - [4.6.4 DoRA、LoRA+](./04-dora-lora-plus)
-- [4.4.4 偏好方法对比](../04-preference-optimization/04-methods-comparison)
+- [4.4.5 偏好方法对比](../04-preference-optimization/04-methods-comparison)
 - [4.1.1 SFT](../01-sft/01-sft-overview)

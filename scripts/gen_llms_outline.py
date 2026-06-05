@@ -153,6 +153,7 @@ PARTS = [
             ("dpo", "DPO（Direct Preference Optimization）"),
             ("ipo-kto-orpo-simpo", "IPO、KTO、ORPO、SimPO"),
             ("offline-vs-online", "离线 vs 在线偏好学习"),
+            ("on-policy-vs-off-policy", "On-Policy vs Off-Policy"),
             ("methods-comparison", "方法对比与适用场景"),
         ]),
         ("constitutional-ai-rlaif", "Constitutional AI 与 RLAIF", [

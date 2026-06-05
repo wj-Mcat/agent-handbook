@@ -4,6 +4,8 @@
 
 大模型能力强但推理贵；**蒸馏**将教师 $T$ 的行为迁移到学生 $S$（更小参数或更浅层），在固定延迟预算下保留尽可能多的任务性能。LLM 时代从 logits 匹配扩展到**序列级、思维链、工具轨迹**蒸馏。
 
+本节默认 **off-policy**（教师先生成轨迹再 SFT）。若训练状态需与学生推理一致，应使用 **On-Policy Distillation（OPD）**，见 [4.3.6 OPD](../../04-post-training-alignment/03-rlhf/06-on-policy-distillation)。
+
 ## 核心概念
 
 经典 **KL 蒸馏**（温度 $\tau$）：
@@ -77,5 +79,5 @@ flowchart LR
 ## 相关章节
 
 - 同章：[5.4.1 剪枝](./01-pruning) · [5.4.3 小模型](./03-small-model-design)
-- 对齐：[4.1 SFT](../../04-post-training-alignment/01-sft/02-data-construction)
+- 对齐：[4.1 SFT](../../04-post-training-alignment/01-sft/02-data-construction) · [4.3.6 OPD](../../04-post-training-alignment/03-rlhf/06-on-policy-distillation)
 - 推理模型：[6.3.3 长 CoT 训练](../../06-reasoning-test-time-compute/03-rl-reasoning/03-long-cot-training)

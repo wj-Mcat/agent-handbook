@@ -54,7 +54,7 @@ $$
 | --- | --- |
 | **系统** | 需 **四模型共存**（policy、ref、RM、critic）或 offload；DeepSpeed、Megatron+RLHF 框架 |
 | **数据** | 偏好数据贵；常与 [Constitutional AI](../05-constitutional-ai-rlaif/01-constitutional-ai) / RLAIF 互补 |
-| **替代** | [DPO](../04-preference-optimization/01-dpo) 省 RM+RL 工程；大厂仍可能在线 RL |
+| **替代** | [DPO](../04-preference-optimization/01-dpo) 省 RM+RL 工程；[OPD](./06-on-policy-distillation) 用教师稠密 logprob 替代 RM+稀疏 RL；大厂常混合使用 |
 | **监控** | reward 均值、KL、response 长度、拒答率、毒性分类器 |
 
 训练不稳定与 reward hacking 见 [4.3.5 挑战](./05-rlhf-challenges)。
@@ -91,4 +91,5 @@ $$
 - [4.3.2 奖励模型](./02-reward-model)
 - [4.3.3 PPO](./03-ppo)
 - [4.4.1 DPO](../04-preference-optimization/01-dpo)（无 RL 的偏好优化）
+- [4.3.6 On-Policy Distillation](./06-on-policy-distillation)（师生 on-policy 稠密监督）
 - [4.1.1 SFT](../01-sft/01-sft-overview)

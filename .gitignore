@@ -19,3 +19,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
+
+# 个人知识测验进度（knowledge-quiz skill）
+.quiz/
+
+# 个人模块深聊进度（module-deep-dive skill）
+.deep-dive/

@@ -80,5 +80,5 @@ flowchart TD
 
 - [4.4.1 DPO](./01-dpo)
 - [4.4.3 离线 vs 在线](./03-offline-vs-online)
-- [4.4.4 方法对比](./04-methods-comparison)
+- [4.4.4 On-Policy vs Off-Policy](./03a-on-policy-vs-off-policy) · [4.4.5 方法对比](./04-methods-comparison)
 - [4.1.1 SFT](../01-sft/01-sft-overview)

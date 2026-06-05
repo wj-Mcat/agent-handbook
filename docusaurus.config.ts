@@ -29,7 +29,24 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en', 'zh'],
+        docsRouteBasePath: ['docs', 'llms', 'paper-reading', 'weekly-paper'],
+        docsDir: ['docs', 'llms', 'paper-reading', 'weekly-paper'],
+        searchContextByPaths: [
+          {path: 'docs', label: 'Agent'},
+          {path: 'llms', label: 'LLMs'},
+          {path: 'paper-reading', label: 'Paper Reading'},
+          {path: 'weekly-paper', label: 'Weekly Paper'},
+        ],
+      },
+    ],
+  ],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -157,6 +174,10 @@ const config: Config = {
           label: 'Weekly Paper',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'search',
+          position: 'right',
+        },
         {
           href: 'https://github.com/wj-Mcat/agent-handbook',
           label: 'Github',

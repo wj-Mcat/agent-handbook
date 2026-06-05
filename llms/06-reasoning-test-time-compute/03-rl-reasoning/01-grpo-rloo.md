@@ -75,10 +75,10 @@ flowchart TD
 
 - 组内 $G$ 过小 → 优势估计噪声大，训练抖动。
 - 全错/全对组梯度为零，需 curriculum 或难度过滤。
-- 与 [4.4 DPO](../../04-post-training-alignment/04-preference-optimization/01-dpo) 相比 on-policy 成本高但更适合稀疏可验证奖励。
+- 与 [4.4 DPO](../../04-post-training-alignment/04-preference-optimization/01-dpo) 相比 on-policy 成本高但更适合稀疏可验证奖励；**OPD/OPSD** 在同为 on-policy 时用教师或标准解提供稠密 token 监督，常与 RLVR 串联（见 [4.3.6 OPD](../../04-post-training-alignment/03-rlhf/06-on-policy-distillation)）。
 
 ## 相关章节
 
 - 同章：[6.3.2 RLVR](./02-rlvr) · [6.3.3 长 CoT](./03-long-cot-training) · [6.3.4 自博弈](./04-self-play)
 - 产品：[6.2.2 DeepSeek-R1](./../02-test-time-compute/02-deepseek-r1)
-- RLHF：[4.3.1 流程](../../04-post-training-alignment/03-rlhf/01-rlhf-pipeline)
+- RLHF：[4.3.1 流程](../../04-post-training-alignment/03-rlhf/01-rlhf-pipeline) · [4.3.6 OPD](../../04-post-training-alignment/03-rlhf/06-on-policy-distillation)

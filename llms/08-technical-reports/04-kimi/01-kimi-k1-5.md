@@ -1,4 +1,4 @@
-# 8.4.1 Kimi K1.5（RL Scaling）
+# Kimi K1.5（RL Scaling）
 
 > 论文：[Kimi k1.5: Scaling Reinforcement Learning](https://arxiv.org/abs/2501.12599) | 后续：[8.4.2 Kimi K2](./02-kimi-k2)
 

@@ -1,4 +1,4 @@
-# 2.3.4 注意力变体：MQA、GQA、MLA
+# 注意力变体：MQA、GQA、MLA
 
 > **KV 压缩 vs token 稀疏** 边界见 [2.3.6.8 KV 压缩与稀疏边界](./06-sparse-attention/08-kv-compression-boundary)。
 

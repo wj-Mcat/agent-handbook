@@ -1,4 +1,4 @@
-# 4.6.1 Adapter
+# Adapter
 
 ## 要解决的问题
 

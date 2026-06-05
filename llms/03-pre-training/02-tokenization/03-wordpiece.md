@@ -1,4 +1,4 @@
-# 3.2.3 WordPiece
+# WordPiece
 
 ## 要解决的问题
 

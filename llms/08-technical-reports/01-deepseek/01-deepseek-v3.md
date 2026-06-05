@@ -1,4 +1,4 @@
-# 8.1.1 DeepSeek-V3（MLA + DeepSeekMoE + MTP + FP8）
+# DeepSeek-V3（MLA + DeepSeekMoE + MTP + FP8）
 
 > 技术报告：[arXiv:2412.19437](https://arxiv.org/abs/2412.19437) | 权重：[Hugging Face DeepSeek-V3](https://huggingface.co/deepseek-ai/DeepSeek-V3)
 

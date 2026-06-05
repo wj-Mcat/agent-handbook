@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: 1.2.1 学习范式
+title: 学习范式
 ---
 
 # 学习范式

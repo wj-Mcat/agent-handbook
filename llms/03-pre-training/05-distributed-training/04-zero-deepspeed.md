@@ -1,4 +1,4 @@
-# 3.5.4 ZeRO 优化（DeepSpeed）
+# ZeRO 优化（DeepSpeed）
 
 ## 要解决的问题
 

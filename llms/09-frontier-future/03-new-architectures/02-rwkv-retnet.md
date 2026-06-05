@@ -1,4 +1,4 @@
-# 9.3.2 RWKV、RetNet
+# RWKV、RetNet
 
 ## 要解决的问题
 

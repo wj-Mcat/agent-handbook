@@ -1,4 +1,4 @@
-# 7.1.4 多模态基准（MMMU、MathVista）
+# 多模态基准（MMMU、MathVista）
 
 ## 要解决的问题
 

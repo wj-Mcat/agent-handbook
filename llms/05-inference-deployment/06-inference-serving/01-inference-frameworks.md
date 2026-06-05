@@ -1,4 +1,4 @@
-# 5.6.1 推理框架对比（vLLM、TGI、TensorRT-LLM、SGLang、LMDeploy）
+# 推理框架对比（vLLM、TGI、TensorRT-LLM、SGLang、LMDeploy）
 
 ## 要解决的问题
 

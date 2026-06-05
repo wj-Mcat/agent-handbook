@@ -1,4 +1,4 @@
-# 3.4.1 Kaplan Scaling Laws
+# Kaplan Scaling Laws
 
 ## 要解决的问题
 

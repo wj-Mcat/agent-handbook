@@ -1,4 +1,4 @@
-# 8.6.3 Gemma 3（Google 开源模型）
+# Gemma 3（Google 开源模型）
 
 > 官方：[Gemma 文档](https://ai.google.dev/gemma) | 领读：[Gemma 2/3](/paper-reading/tech-report/international/gemma-2-3)
 

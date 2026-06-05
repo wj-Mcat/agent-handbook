@@ -1,4 +1,4 @@
-# 3.6.3 检查点（Checkpointing）与激活重计算
+# 检查点（Checkpointing）与激活重计算
 
 ## 要解决的问题
 

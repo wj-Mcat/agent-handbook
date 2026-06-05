@@ -1,4 +1,4 @@
-# 9.3.3 混合架构（Jamba、Zamba）
+# 混合架构（Jamba、Zamba）
 
 ## 要解决的问题
 

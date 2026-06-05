@@ -1,4 +1,4 @@
-# 1.3.6 学习率调度（Warmup、Cosine、WSD）
+# 学习率调度（Warmup、Cosine、WSD）
 
 ## 训练规模与学习率
 

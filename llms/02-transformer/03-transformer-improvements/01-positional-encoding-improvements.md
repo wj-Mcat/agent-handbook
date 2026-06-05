@@ -1,4 +1,4 @@
-# 2.3.1 位置编码改进：RoPE、ALiBi、NoPE
+# 位置编码改进：RoPE、ALiBi、NoPE
 
 ## 位置编码改进
 

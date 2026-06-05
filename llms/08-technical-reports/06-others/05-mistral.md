@@ -1,4 +1,4 @@
-# 8.6.5 Mistral / Mixtral 系列
+# Mistral / Mixtral 系列
 
 > 官方：[Mistral AI](https://mistral.ai) | 领读：[Mistral / Mixtral](/paper-reading/tech-report/international/mistral-mixtral)
 

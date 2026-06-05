@@ -1,4 +1,4 @@
-# 4.5.1 Constitutional AI 原理（Anthropic）
+# Constitutional AI 原理（Anthropic）
 
 ## 要解决的问题
 

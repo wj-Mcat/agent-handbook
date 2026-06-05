@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: 1.2.2 损失函数与正则化
+title: 损失函数与正则化
 ---
 
 # 损失函数与正则化

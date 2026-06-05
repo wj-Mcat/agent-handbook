@@ -1,4 +1,4 @@
-# 8.1.3 DeepSeek-V3.1 / V3.2（DSA 稀疏注意力）
+# DeepSeek-V3.1 / V3.2（DSA 稀疏注意力）
 
 > **DSA 机制详解**：[2.3.6.4 DeepSeek 稀疏路线](../../02-transformer/03-transformer-improvements/06-sparse-attention/04-deepseek-sparse-route)  
 > 技术报告：[DeepSeek-V3.2](https://arxiv.org/abs/2512.02556)（arXiv:2512.02556）  

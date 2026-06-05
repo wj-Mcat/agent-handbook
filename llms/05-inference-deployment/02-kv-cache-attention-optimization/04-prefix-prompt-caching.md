@@ -1,4 +1,4 @@
-# 5.2.4 Prefix Caching、Prompt Caching
+# Prefix Caching、Prompt Caching
 
 ## 要解决的问题
 

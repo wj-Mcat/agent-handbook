@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: 1.2.3 偏差–方差权衡
+title: 偏差–方差权衡
 ---
 
 # 偏差–方差权衡

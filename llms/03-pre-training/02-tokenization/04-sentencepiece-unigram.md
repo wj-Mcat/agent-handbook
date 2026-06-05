@@ -1,4 +1,4 @@
-# 3.2.4 SentencePiece、Unigram
+# SentencePiece、Unigram
 
 ## 要解决的问题
 

@@ -2,7 +2,7 @@
 slug: on-policy-vs-off-policy
 ---
 
-# 4.4.4 On-Policy vs Off-Policy RL
+# On-Policy vs Off-Policy RL
 
 经典 RL 里另一组常被混淆的概念：**更新目标策略时，经验是否必须来自「当前正在评估/改进的那条策略」**？本节厘清 **on-policy / off-policy** 的定义、代表算法（SARSA、Q-learning）与重要性采样，并映射到 LLM 后训练；与上一节 [4.4.3 离线 vs 在线](./03-offline-vs-online) 正交——后者问的是 **训练期是否继续与环境交互**，本节问的是 **行为策略 $\pi_b$ 与目标策略 $\pi_\theta$ 是否一致**。
 

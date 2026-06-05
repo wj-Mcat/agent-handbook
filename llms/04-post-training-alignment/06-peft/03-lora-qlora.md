@@ -1,4 +1,4 @@
-# 4.6.3 LoRA 与 QLoRA
+# LoRA 与 QLoRA
 
 ## 要解决的问题
 

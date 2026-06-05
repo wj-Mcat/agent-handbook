@@ -1,4 +1,4 @@
-# 1.3.7 量化基础（数据类型与 QLoRA / GPTQ / AWQ）
+# 量化基础（数据类型与 QLoRA / GPTQ / AWQ）
 
 > 更完整的推理期量化实践见 `llms/05-inference-deployment/03-quantization/`。
 

@@ -1,4 +1,4 @@
-# 8.1.2 DeepSeek-R1（纯 RL 激发推理 + GRPO）
+# DeepSeek-R1（纯 RL 激发推理 + GRPO）
 
 > 技术报告：[arXiv:2501.12948](https://arxiv.org/abs/2501.12948) | 基座：[8.1.1 DeepSeek-V3](./01-deepseek-v3)
 

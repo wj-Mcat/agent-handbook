@@ -1,4 +1,4 @@
-# 6.1.1 数学推理（GSM8K、MATH、AIME）
+# 数学推理（GSM8K、MATH、AIME）
 
 ## 要解决的问题
 

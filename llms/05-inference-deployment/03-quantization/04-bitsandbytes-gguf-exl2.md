@@ -1,4 +1,4 @@
-# 5.3.4 BitsAndBytes、GGUF、EXL2
+# BitsAndBytes、GGUF、EXL2
 
 ## 要解决的问题
 

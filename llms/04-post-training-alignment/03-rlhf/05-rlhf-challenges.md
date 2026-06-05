@@ -1,4 +1,4 @@
-# 4.3.5 RLHF 的挑战（reward hacking、模式坍塌）
+# RLHF 的挑战（reward hacking、模式坍塌）
 
 ## 要解决的问题
 

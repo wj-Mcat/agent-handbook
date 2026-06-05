@@ -1,4 +1,4 @@
-# 3.5.3 流水线并行（Pipeline Parallelism）
+# 流水线并行（Pipeline Parallelism）
 
 ## 要解决的问题
 

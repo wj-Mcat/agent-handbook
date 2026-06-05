@@ -1,4 +1,4 @@
-# 8.3.1 Llama 4（原生多模态 + iRoPE + 超长上下文）
+# Llama 4（原生多模态 + iRoPE + 超长上下文）
 
 > Meta 技术材料与社区报告 | 领读：[Llama 4 paper-reading](/paper-reading/tech-report/international/llama-4)
 

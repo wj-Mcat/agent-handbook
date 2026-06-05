@@ -1,4 +1,4 @@
-# 3.2.2 BPE（Byte Pair Encoding）
+# BPE（Byte Pair Encoding）
 
 ## 要解决的问题
 

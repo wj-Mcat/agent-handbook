@@ -1,4 +1,4 @@
-# 2.1.2 缩放点积注意力（Scaled Dot-Product Attention）
+# 缩放点积注意力（Scaled Dot-Product Attention）
 
 ## 要解决的问题
 

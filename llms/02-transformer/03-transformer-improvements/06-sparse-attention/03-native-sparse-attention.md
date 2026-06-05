@@ -1,4 +1,4 @@
-# 2.3.6.3 Native Sparse Attention（NSA）
+# Native Sparse Attention（NSA）
 
 > 方法对比表见 [稀疏注意力总览](./01-overview#主流方法对比表)。论文：[Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention](https://arxiv.org/abs/2502.11089)（DeepSeek-AI，2025）。
 

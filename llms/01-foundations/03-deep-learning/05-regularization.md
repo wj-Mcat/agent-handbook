@@ -1,4 +1,4 @@
-# 1.3.5 正则化技术（Dropout、LayerNorm、RMSNorm、权重衰减）
+# 正则化技术（Dropout、LayerNorm、RMSNorm、权重衰减）
 
 ## regularization
 

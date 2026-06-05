@@ -1,4 +1,4 @@
-# 5.5.2 Medusa、EAGLE、Lookahead Decoding
+# Medusa、EAGLE、Lookahead Decoding
 
 ## 要解决的问题
 

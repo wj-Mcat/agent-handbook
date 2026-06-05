@@ -1,4 +1,4 @@
-# 6.2.5 推理时 Scaling Laws
+# 推理时 Scaling Laws
 
 ## 要解决的问题
 

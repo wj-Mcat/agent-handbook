@@ -1,4 +1,4 @@
-# 1.3.4 优化器（SGD、Adam、AdamW、Lion、Sophia）
+# 优化器（SGD、Adam、AdamW、Lion、Sophia）
 
 ## 要解决的问题
 

@@ -1,4 +1,4 @@
-# 2.3.6.8 KV 压缩与「稀疏」的边界（MQA / GQA / MLA）
+# KV 压缩与「稀疏」的边界（MQA / GQA / MLA）
 
 > **公式、示意图与实现细节** 以 [注意力变体：MQA、GQA、MLA](../04-attention-variants) 为准。本章说明它们为何 **不是 token 级稀疏**，以及如何与 [DSA](./04-deepseek-sparse-route) 等 **叠加**。
 

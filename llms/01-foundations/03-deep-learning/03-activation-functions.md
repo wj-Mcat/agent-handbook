@@ -1,4 +1,4 @@
-# 1.3.3 激活函数（ReLU、GELU、Swish、SiLU）
+# 激活函数（ReLU、GELU、Swish、SiLU）
 
 ## 常用算子
 

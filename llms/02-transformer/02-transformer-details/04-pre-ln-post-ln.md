@@ -1,4 +1,4 @@
-# 2.2.4 Pre-LN vs Post-LN
+# Pre-LN vs Post-LN
 
 ## 要解决的问题
 

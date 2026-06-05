@@ -1,4 +1,4 @@
-# 8.4.2 Kimi K2（MuonClip + 超稀疏 MoE + Agent）
+# Kimi K2（MuonClip + 超稀疏 MoE + Agent）
 
 > 完整论文：[Kimi K2: Open Agentic Intelligence](https://arxiv.org/abs/2507.20534)（arXiv:2507.20534，2025）
 

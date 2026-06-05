@@ -1,4 +1,4 @@
-# 3.2.5 Byte-level BPE 与 Tiktoken
+# Byte-level BPE 与 Tiktoken
 
 ## 要解决的问题
 

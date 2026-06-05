@@ -1,4 +1,4 @@
-# 3.3.4 FIM（Fill-in-the-Middle）
+# FIM（Fill-in-the-Middle）
 
 ## 要解决的问题
 

@@ -1,4 +1,4 @@
-# 5.5.1 推测解码（Speculative Decoding）
+# 推测解码（Speculative Decoding）
 
 ## 要解决的问题
 

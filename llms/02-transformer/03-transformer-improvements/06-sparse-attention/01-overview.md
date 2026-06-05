@@ -1,4 +1,4 @@
-# 2.3.6.1 稀疏注意力总览
+# 稀疏注意力总览
 
 > 本章按**方法类型**拆分子页，便于逐篇深读。**Flash Attention**（IO 与融合内核，不改变 $O(L^2)$ 渐近阶）见 [Flash Attention 与 IO 优化](../05-flash-attention)。完整推理部署栈见 `llms/05-inference-deployment/`。
 

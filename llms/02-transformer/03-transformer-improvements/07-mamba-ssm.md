@@ -1,4 +1,4 @@
-# 2.3.7 Mamba 与状态空间模型（SSM）作为替代方案
+# Mamba 与状态空间模型（SSM）作为替代方案
 
 > 深入展开见 [9.3.1 Mamba 与状态空间模型](../../09-frontier-future/03-new-architectures/01-mamba-ssm)；[2.3.6.5 线性注意力](./06-sparse-attention/05-linear-attention) 讨论核近似路线。
 

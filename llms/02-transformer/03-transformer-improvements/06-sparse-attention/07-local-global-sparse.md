@@ -1,4 +1,4 @@
-# 2.3.6.7 局部-全局稀疏注意力（Local + Global）
+# 局部-全局稀疏注意力（Local + Global）
 
 > 滑动窗口基础见 [滑动窗口注意力](./06-sliding-window-attention)。可学习多分支见 [NSA](./03-native-sparse-attention)。
 

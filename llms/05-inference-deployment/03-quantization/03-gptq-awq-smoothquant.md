@@ -1,4 +1,4 @@
-# 5.3.3 GPTQ、AWQ、SmoothQuant
+# GPTQ、AWQ、SmoothQuant
 
 ## 要解决的问题
 

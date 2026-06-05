@@ -1,4 +1,4 @@
-# 7.1.2 推理基准（GPQA、ARC-AGI、HumanEval、SWE-bench）
+# 推理基准（GPQA、ARC-AGI、HumanEval、SWE-bench）
 
 ## 要解决的问题
 

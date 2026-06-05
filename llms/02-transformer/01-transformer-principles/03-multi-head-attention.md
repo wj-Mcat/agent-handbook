@@ -1,4 +1,4 @@
-# 2.1.3 多头注意力（Multi-Head Attention）
+# 多头注意力（Multi-Head Attention）
 
 ## Attention
 

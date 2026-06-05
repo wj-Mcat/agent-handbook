@@ -1,4 +1,4 @@
-# 1.4.4 评估指标（BLEU、ROUGE、METEOR、BERTScore）
+# 评估指标（BLEU、ROUGE、METEOR、BERTScore）
 
 > 分类任务常用指标（Accuracy / Recall / Precision）见 [1.2.4 评估指标与交叉验证](../02-machine-learning/04-metrics-cross-validation.md)。
 

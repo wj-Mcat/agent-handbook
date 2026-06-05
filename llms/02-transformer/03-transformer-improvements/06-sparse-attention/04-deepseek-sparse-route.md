@@ -1,4 +1,4 @@
-# 2.3.6.4 DeepSeek 稀疏注意力路线（V3 / V3.2 / V4）
+# DeepSeek 稀疏注意力路线（V3 / V3.2 / V4）
 
 > 总览见 [稀疏注意力总览](./01-overview)。**MLA 公式与示意图**见 [注意力变体：MQA、GQA、MLA](../04-attention-variants#multi-lantent-attention)；技术报告领读见 [V3](/paper-reading/tech-report/deepseek/deepseek-v3)、[V4](/paper-reading/tech-report/deepseek/deepseek-v4)。
 

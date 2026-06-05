@@ -1,4 +1,4 @@
-# 3.3.3 前缀语言建模、Span Corruption
+# 前缀语言建模、Span Corruption
 
 ## 要解决的问题
 

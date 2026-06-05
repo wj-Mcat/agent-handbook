@@ -1,4 +1,4 @@
-# 4.4.1 DPO（Direct Preference Optimization）
+# DPO（Direct Preference Optimization）
 
 ## 要解决的问题
 

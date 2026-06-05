@@ -1,4 +1,4 @@
-# 3.5.2 张量并行（Tensor Parallelism）
+# 张量并行（Tensor Parallelism）
 
 ## 要解决的问题
 

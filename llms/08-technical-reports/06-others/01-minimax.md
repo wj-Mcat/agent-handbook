@@ -1,4 +1,4 @@
-# 8.6.1 MiniMax-01 / MiniMax-M1（闪电注意力 + 超长上下文）
+# MiniMax-01 / MiniMax-M1（闪电注意力 + 超长上下文）
 
 > 领读：[MiniMax-01](/paper-reading/tech-report/minimax/minimax-01) · [MiniMax-M1](/paper-reading/tech-report/minimax/minimax-m1)
 

@@ -1,4 +1,4 @@
-# 1.1.2 LLM 发展简史（从图灵到 GPT-4 / Claude / Gemini）
+# LLM 发展简史（从图灵到 GPT-4 / Claude / Gemini）
 
 > 更完整时间线见 [LLMs 发展历程](../../00-intro)。
 

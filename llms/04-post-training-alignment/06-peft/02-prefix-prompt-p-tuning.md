@@ -1,4 +1,4 @@
-# 4.6.2 Prefix Tuning、Prompt Tuning、P-Tuning
+# Prefix Tuning、Prompt Tuning、P-Tuning
 
 ## 要解决的问题
 

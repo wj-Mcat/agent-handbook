@@ -1,4 +1,4 @@
-# 3.4.2 Chinchilla Scaling Laws
+# Chinchilla Scaling Laws
 
 ## 要解决的问题
 

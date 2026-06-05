@@ -1,4 +1,4 @@
-# 8.6.2 gpt-oss（OpenAI 开源权重模型）
+# gpt-oss（OpenAI 开源权重模型）
 
 > 官方：[Introducing gpt-oss](https://openai.com/index/introducing-gpt-oss/)（2025-08）
 

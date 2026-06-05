@@ -1,4 +1,4 @@
-# 8.6.4 OLMo 2（AI2 全开放模型）
+# OLMo 2（AI2 全开放模型）
 
 > 项目：[Allen AI OLMo](https://allenai.org/olmo) | 领读：[OLMo 2](/paper-reading/tech-report/international/olmo-2)
 

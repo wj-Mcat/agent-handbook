@@ -1,4 +1,4 @@
-# 3.5.6 FSDP（Fully Sharded Data Parallel）
+# FSDP（Fully Sharded Data Parallel）
 
 ## 要解决的问题
 

@@ -1,4 +1,4 @@
-# 2.2.3 Encoder-only / Decoder-only / Encoder-Decoder 三大范式
+# Encoder-only / Decoder-only / Encoder-Decoder 三大范式
 
 ## 要解决的问题
 

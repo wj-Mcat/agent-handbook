@@ -1,4 +1,4 @@
-# 4.4.2 IPO、KTO、ORPO、SimPO
+# IPO、KTO、ORPO、SimPO
 
 ## 要解决的问题
 

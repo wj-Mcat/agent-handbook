@@ -1,4 +1,4 @@
-# 5.3.2 INT8、INT4、FP8、FP4
+# INT8、INT4、FP8、FP4
 
 ## 要解决的问题
 

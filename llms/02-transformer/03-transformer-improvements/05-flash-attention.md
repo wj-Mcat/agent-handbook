@@ -1,4 +1,4 @@
-# 2.3.5 Flash Attention 与 IO 优化
+# Flash Attention 与 IO 优化
 
 > Flash Attention 通过 **Tiling + Online Softmax + Recomputation** 降低 HBM↔SRAM 数据搬运，在数学上与标准 Attention 等价，但 **不改变 $O(L^2)$ 渐近复杂度**。与 token 稀疏、KV 压缩（MLA 等）正交，工业界常叠加使用。稀疏与长序列路线见 [稀疏注意力总览](./06-sparse-attention/01-overview)。
 

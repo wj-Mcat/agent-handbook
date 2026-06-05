@@ -1,4 +1,4 @@
-# 9.3.1 Mamba 与状态空间模型
+# Mamba 与状态空间模型
 
 > Transformer 路线中的 SSM 简介见 [2.3.7 Mamba 与 SSM](../../02-transformer/03-transformer-improvements/07-mamba-ssm)。
 

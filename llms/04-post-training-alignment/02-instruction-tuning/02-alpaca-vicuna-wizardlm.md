@@ -1,4 +1,4 @@
-# 4.2.2 Alpaca、Vicuna、WizardLM 数据范式
+# Alpaca、Vicuna、WizardLM 数据范式
 
 ## 要解决的问题
 

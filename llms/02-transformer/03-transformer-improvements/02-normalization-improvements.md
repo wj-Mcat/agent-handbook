@@ -1,4 +1,4 @@
-# 2.3.2 归一化改进：RMSNorm、DeepNorm
+# 归一化改进：RMSNorm、DeepNorm
 
 ## 要解决的问题
 

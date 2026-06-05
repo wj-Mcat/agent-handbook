@@ -1,4 +1,4 @@
-# 4.3.6 On-Policy Distillation（OPD）
+# On-Policy Distillation（OPD）
 
 ## 要解决的问题
 

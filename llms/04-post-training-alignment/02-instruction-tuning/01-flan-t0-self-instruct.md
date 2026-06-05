@@ -1,4 +1,4 @@
-# 4.2.1 FLAN、T0、Self-Instruct
+# FLAN、T0、Self-Instruct
 
 ## 要解决的问题
 

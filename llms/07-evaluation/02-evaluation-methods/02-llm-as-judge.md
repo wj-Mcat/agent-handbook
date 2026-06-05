@@ -1,4 +1,4 @@
-# 7.2.2 LLM-as-a-Judge
+# LLM-as-a-Judge
 
 ## 要解决的问题
 

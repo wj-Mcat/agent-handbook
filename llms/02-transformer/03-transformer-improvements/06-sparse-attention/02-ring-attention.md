@@ -1,4 +1,4 @@
-# 2.3.6.2 Ring Attention 与序列并行
+# Ring Attention 与序列并行
 
 > 总览见 [稀疏注意力总览](./01-overview)。Ring 解决 **「单卡装不下、但语义仍需全连接 attention」**；与 [DSA](./04-deepseek-sparse-route)、[NSA](./03-native-sparse-attention) 等 **减少参与计算的 token 数** 正交。
 

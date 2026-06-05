@@ -1,4 +1,4 @@
-# 7.1.5 Agent 基准（WebArena、OSWorld）
+# Agent 基准（WebArena、OSWorld）
 
 ## 要解决的问题
 

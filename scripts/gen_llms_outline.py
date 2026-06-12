@@ -4,7 +4,7 @@
 层级与编号规则（序号由层级自动计算，避免手工错号）：
 - 一级：部分 -> 顶层目录 + _category_.yml，标签保留「第 X 部分　…」
 - 二级：章 -> 子目录 + _category_.yml，标签为「部.章」点分编号，如 5.1
-- 三级：小节 -> 独立 Markdown 文件，H1 标题为「部.章.节」点分编号，如 5.5.1
+- 三级及以上：小节 / 嵌套分类 -> 纯标题，不写点分序号（侧边栏更简洁）
 - 附录 -> 单独目录，每个附录为一个 Markdown 文件（不参与点分编号）
 
 目录/文件名使用数字前缀控制排序（章前缀为部内局部序号），
@@ -296,6 +296,9 @@ PARTS = [
             ("recursive-self-improvement", "自我改进与递归自举"),
             ("agi-timeline", "AGI 时间线与争论"),
         ]),
+        ("model-interpretability", "模型可解释性", [
+            ("claude-interpretability-in-2026", "Claude 可解释性前沿：Natural Language Autoencoders（2026）"),
+        ]),
         ("conclusion", "结语", [
             ("panorama-review", "LLM 技术的全景回顾"),
             ("advice-practitioners", "给从业者的建议"),
@@ -345,16 +348,16 @@ def main() -> None:
                 if len(section) == 3:
                     sec_slug, sec_title, subsections = section
                     sub_path = os.path.join(ch_path, f"{sec_idx:02d}-{sec_slug}")
-                    write_category(sub_path, f"{part_idx}.{ch_idx}.{sec_idx} {sec_title}")
+                    write_category(sub_path, sec_title)
                     created_dirs += 1
                     for sub_idx, (sub_slug, sub_title) in enumerate(subsections, 1):
                         file_path = os.path.join(sub_path, f"{sub_idx:02d}-{sub_slug}.md")
-                        write_doc(file_path, f"{part_idx}.{ch_idx}.{sec_idx}.{sub_idx} {sub_title}")
+                        write_doc(file_path, sub_title)
                         created_files += 1
                 else:
                     sec_slug, sec_title = section
                     file_path = os.path.join(ch_path, f"{sec_idx:02d}-{sec_slug}.md")
-                    write_doc(file_path, f"{part_idx}.{ch_idx}.{sec_idx} {sec_title}")
+                    write_doc(file_path, sec_title)
                     created_files += 1
 
     # 附录：排在所有部分之后

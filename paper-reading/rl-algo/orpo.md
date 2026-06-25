@@ -1,6 +1,8 @@
 ---
-title: "[Paper Reading]ORPO: Monolithic Preference Optimization without Reference Model"
+title: "ORPO"
 ---
+
+# ORPO: Monolithic Preference Optimization without Reference Model
 
 ## 主要解决的问题
 
